@@ -13,7 +13,7 @@ public sealed class AccountMapping
     public string Currency { get; set; } = "SAR";
     public string Connection { get; set; } = "";
     public string ExternalAccount { get; set; } = "";
-    public byte[] Version { get; set; } = [];
+    public uint Version { get; set; }
 }
 public sealed class StoredMovement
 {
@@ -39,7 +39,7 @@ public sealed class SyncJob
     public long LeaseGeneration { get; set; }
     public DateTimeOffset? LeaseExpiresAt { get; set; }
     public DateTimeOffset NextRunAt { get; set; }
-    public byte[] Version { get; set; } = [];
+    public uint Version { get; set; }
 }
 public sealed class MatchGroup
 {
@@ -49,7 +49,7 @@ public sealed class MatchGroup
     public string Preparer { get; set; } = "";
     public string Reason { get; set; } = "";
     public string RuleVersion { get; set; } = MatchingEngine.RuleVersion;
-    public byte[] Version { get; set; } = [];
+    public uint Version { get; set; }
 }
 public sealed class MatchMember
 {
@@ -80,6 +80,7 @@ public sealed class DikeDbContext(DbContextOptions<DikeDbContext> options) : DbC
 
     protected override void OnModelCreating(ModelBuilder model)
     {
+        model.HasDefaultSchema("dike_finance");
         model.Entity<AccountMapping>().Property(x => x.Version).IsRowVersion();
         model.Entity<AccountMapping>().Property(x => x.Connection).HasMaxLength(100);
         model.Entity<AccountMapping>().Property(x => x.Company).HasMaxLength(100);
@@ -92,7 +93,7 @@ public sealed class DikeDbContext(DbContextOptions<DikeDbContext> options) : DbC
         model.Entity<SyncJob>().Property(x => x.Version).IsRowVersion();
         model.Entity<SyncJob>().HasIndex(x => new { x.Status, x.NextRunAt });
         model.Entity<MatchGroup>().Property(x => x.Version).IsRowVersion();
-        model.Entity<MatchMember>().HasIndex(x => x.MovementId).IsUnique().HasFilter("[Active] = 1");
+        model.Entity<MatchMember>().HasIndex(x => x.MovementId).IsUnique().HasFilter("\"Active\"");
         model.Entity<MatchMember>().HasOne<MatchGroup>().WithMany().HasForeignKey(x => x.GroupId).OnDelete(DeleteBehavior.Restrict);
         model.Entity<MatchMember>().HasOne<StoredMovement>().WithMany().HasForeignKey(x => x.MovementId).OnDelete(DeleteBehavior.Restrict);
         model.Entity<AuditEvent>().Property(x => x.IdempotencyKey).HasMaxLength(200);

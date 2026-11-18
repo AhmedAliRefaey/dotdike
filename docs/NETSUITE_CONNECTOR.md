@@ -31,7 +31,7 @@ Requests page 1,000 rows at a time and validate offsets, counts, stable totalRes
 
 ## Persistence
 
-Connection state, account lists and completed GL extracts are encrypted using purpose-isolated ASP.NET Core Data Protection under ignored `src/Dike.Web/App_Data/NetSuite/<company-id>/`. State publication uses atomic file replacement; evidence files retain run IDs. Replacing configuration archives previous state and clears the current view to avoid mixing different NetSuite connections. Back up encrypted evidence AND persist/protect Data Protection keys. Use an approved secrets/evidence store and distributed coordination before multi-instance production deployment. This pilot does not yet publish rows into the finance SQL schema or reconcile existing decisions.
+Company credentials, account lists and completed GL extracts use company-specific ASP.NET Core Data Protection. PostgreSQL stores the encrypted documents and commits a completed extract together with its state update. Replacing a connection archives its prior state. The explicit SQLite development mode uses `App_Data/NetSuite/<company-id>/`. Back up hosted evidence with the matching Data Protection certificate. Publishing normalized ledger rows remains outstanding. [Database configuration](DATABASE_CONFIGURATION.md).
 
 ## Acceptance
 

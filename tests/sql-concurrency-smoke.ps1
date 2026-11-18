@@ -1,5 +1,6 @@
 param([switch]$Run)
 
+# Historical LocalDB design probe. The current PostgreSQL implementation is exercised by Dike.Tests --hosted-storage.
 $ErrorActionPreference = 'Stop'
 $workspace = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $runId = [Guid]::NewGuid().ToString('N')

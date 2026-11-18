@@ -1,5 +1,11 @@
 using Dike.Core;
 
+if (args.Contains("--hosted-storage"))
+{
+    await HostedStorageChecks.RunAsync();
+    return;
+}
+
 var scope = new AccountScope("company", "entity", "primary", "bank-1", "SAR");
 var day = new DateOnly(2026, 11, 4);
 Movement Row(string id, SourceSide side, decimal amount, string reference = "R1", bool booked = true)

@@ -6,3 +6,9 @@ appsettings.Local.json
 TestResults/
 artifacts/
 **/App_Data/
+.vercel/
+.env
+.env.*
+!.env.example
+*.pfx
+*.p12

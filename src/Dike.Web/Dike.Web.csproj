@@ -6,6 +6,12 @@
     <InternalsVisibleTo Include="Dike.Tests" />
     <ProjectReference Include="../Dike.Infrastructure/Dike.Infrastructure.csproj" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.14" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection.EntityFrameworkCore" Version="10.0.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.14" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="App_Data/**;appsettings.Local.json" CopyToOutputDirectory="Never" CopyToPublishDirectory="Never" />
+    <None Update="App_Data/**;appsettings.Local.json" CopyToOutputDirectory="Never" CopyToPublishDirectory="Never" />
   </ItemGroup>
 </Project>

@@ -21,9 +21,9 @@ public sealed class CompanyOdoo(CompanyAdministrator access, CompanyOdooStore st
     public async Task<OdooWorkspace> ReadAsync(ClaimsPrincipal user, CancellationToken ct = default)
     {
         var company = await RequireAsync(user, ct);
-        return await store.LockedAsync(company.Id, async () =>
+        return await store.LockedAsync(company.Id, async session =>
         {
-            var state = await store.ReadAsync(company.Id, ct);
+            var state = await store.ReadAsync(session, company.Id, ct);
             var baseUri = Endpoint();
             var needsReconnect = state != null && state.BaseUrl != baseUri.AbsoluteUri;
             // Old/unbound state is retained, but cannot be reused against a different endpoint.
@@ -118,14 +118,14 @@ public sealed class CompanyOdoo(CompanyAdministrator access, CompanyOdooStore st
         deadline.CancelAfter(TimeSpan.FromMinutes(2));
         try
         {
-            await store.LockedAsync(company.Id, async () =>
+            await store.LockedAsync(company.Id, async session =>
             {
                 await RecheckAsync(user, company.Id, deadline.Token);
-                var state = await update(company, await store.ReadAsync(company.Id, deadline.Token), deadline.Token);
+                var state = await update(company, await store.ReadAsync(session, company.Id, deadline.Token), deadline.Token);
                 // A revoked/moved/locked-out user cannot publish the completed network result.
                 await RecheckAsync(user, company.Id, deadline.Token);
                 RequireEndpoint(state);
-                await store.WriteAsync(company.Id, state, deadline.Token);
+                await store.WriteAsync(session, company.Id, state, deadline.Token);
                 return true;
             }, deadline.Token);
         }

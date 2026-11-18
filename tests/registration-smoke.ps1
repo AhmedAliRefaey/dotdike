@@ -1,10 +1,16 @@
+param([string]$PostgresContainer)
+
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.Net.Http
 $testRoot = Join-Path $PSScriptRoot '..\artifacts\registration-check'
 $testRoot = [IO.Path]::GetFullPath($testRoot)
 $testDb = Join-Path $testRoot ('smoke-' + [Guid]::NewGuid().ToString('N') + '.db')
 $appRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\src\Dike.Web'))
-$process = Start-Process dotnet -ArgumentList @((Join-Path $testRoot 'Dike.Web.dll'), '--environment', 'Development', '--urls', 'http://localhost:5081', '--contentRoot', $appRoot, '--NetSuite:StoragePath', (Join-Path $testRoot 'netsuite-fixtures'), '--ConnectionStrings:Identity', ('"Data Source=' + $testDb + '"')) -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $testRoot 'smoke.stdout.log') -RedirectStandardError (Join-Path $testRoot 'smoke.stderr.log')
+$storageArgs = @('--Storage:Provider', 'Sqlite', '--ConnectionStrings:Identity', ('"Data Source=' + $testDb + '"'),
+    '--NetSuite:StoragePath', (Join-Path $testRoot 'netsuite-fixtures'))
+$originalIdentity = $env:ConnectionStrings__Identity
+$originalFinance = $env:ConnectionStrings__Dike
+$createdDatabase = $false
 function Client {
     $handler = New-Object System.Net.Http.HttpClientHandler
     $handler.AllowAutoRedirect = $false
@@ -27,9 +33,29 @@ function Post($client, $path, $values, $tokenPage = $path) {
     return $client.PostAsync($path, $content).GetAwaiter().GetResult()
 }
 try {
+    if ([Net.NetworkInformation.IPGlobalProperties]::GetIPGlobalProperties().GetActiveTcpListeners().Port -contains 5081) {
+        throw 'Port 5081 is in use. The registration checks need their own server.'
+    }
+    if ($PostgresContainer) {
+        $binding = docker port $PostgresContainer 5432/tcp
+        if ($LASTEXITCODE -ne 0 -or $binding -notmatch '^127\.0\.0\.1:(\d+)$') { throw 'Use a PostgreSQL test container published on IPv4 loopback only.' }
+        $port = $Matches[1]
+        $password = docker exec $PostgresContainer printenv POSTGRES_PASSWORD
+        if ($LASTEXITCODE -ne 0 -or !$password) { throw 'The test container must have a postgres user with POSTGRES_PASSWORD.' }
+        $database = 'dike_registration_' + [Guid]::NewGuid().ToString('N')
+        docker exec $PostgresContainer createdb -U postgres $database
+        if ($LASTEXITCODE -ne 0) { throw 'Could not create the isolated registration database.' }
+        $createdDatabase = $true
+        $env:ConnectionStrings__Identity = 'postgresql://postgres:' + [Uri]::EscapeDataString($password) + '@127.0.0.1:' + $port + '/' + $database + '?sslmode=disable'
+        $env:ConnectionStrings__Dike = $env:ConnectionStrings__Identity
+        $storageArgs = @('--Storage:Provider', 'PostgreSql')
+    }
+    $launchArgs = @((Join-Path $testRoot 'Dike.Web.dll'), '--environment', 'Development', '--urls', 'http://localhost:5081', '--contentRoot', $appRoot) + $storageArgs
+    $process = Start-Process dotnet -ArgumentList $launchArgs -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $testRoot 'smoke.stdout.log') -RedirectStandardError (Join-Path $testRoot 'smoke.stderr.log')
     $a = Client
     $b = Client
     for ($i=0; $i -lt 60; $i++) {
+        if ($process.HasExited) { throw 'Registration test server exited during startup. Check the smoke log.' }
         try { $ready = Get $a '/health'; if ([int]$ready.StatusCode -eq 200) { break } } catch { }
         Start-Sleep -Milliseconds 250
     }
@@ -152,8 +178,14 @@ try {
     Check ($result.Headers.Location.OriginalString -eq '/') 'Language switch rejects external return URLs'
     Check ((Body (Get $a '/Company')).Contains('lang="en" dir="ltr"')) 'Switching back restores English LTR'
 
-    Write-Output 'All company registration smoke checks passed. Synthetic data is isolated in artifacts.'
+    Write-Output 'All company registration smoke checks passed.'
 } finally {
     if ($a) { $a.Dispose() }; if ($b) { $b.Dispose() }
-    if (-not $process.HasExited) { Stop-Process -Id $process.Id }
+    if ($process -and -not $process.HasExited) { Stop-Process -Id $process.Id; $process.WaitForExit() }
+    $env:ConnectionStrings__Identity = $originalIdentity
+    $env:ConnectionStrings__Dike = $originalFinance
+    if ($createdDatabase) {
+        docker exec $PostgresContainer dropdb -U postgres --force $database
+        if ($LASTEXITCODE -ne 0) { throw 'Could not remove the isolated registration database.' }
+    }
 }

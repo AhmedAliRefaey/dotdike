@@ -4,7 +4,9 @@ Current delivery work is tracked in the [T01–T42 task board](delivery/TASKS.md
 
 The [remaining work plan](delivery/REMAINING_WORK_PLAN.md), updated 17 November, contains **42 tasks: 1 done, 10 in progress and 31 pending**, seven milestone gates and the retained **86–133 focused engineer-day** planning estimate excluding external waits/significant rework. [T42 Odoo validation](delivery/T42_ODOO_VALIDATION.md) now includes [four Dike.Web pages](ODOO_WEB.md), company-scoped encrypted credentials/previews, the explicit T-sab local-key binding and company/account/weekly/monthly/custom selection. Live NApp reads succeeded; the previously authorized [six synthetic AP bills and four manual payments](delivery/ODOO_AP_TEST_DATA_20261117.md) are posted and verified. Full extraction, independent report agreement and production finance integration remain open. The [acceptance tracker](delivery/ACCEPTANCE_TRACKER.md) preserves AC01–AC44 and OD-01–OD-08; no finance gate was approved.
 
-The [latest resume checkpoint](delivery/CHECKPOINT.md) adds [provider selection during registration](COMPANY_REGISTRATION.md): each company chooses NetSuite or Odoo and sees only that provider's navigation/pages. Company profile can change the choice while retaining saved settings; direct cross-provider URLs/actions are blocked. Latest verification: clean **seven-project build**, **62 HTTP smoke checks, 38 browser checks and 6 isolated upgrade checks passed**, with 405 bilingual resource keys. The real Identity store was backed up and its original data verified unchanged after the additive provider-column upgrade. Windows still blocks the executable runner with `0x800700E1`; its previous 221 passes remain historical. Prior live Odoo, secret, CLI and SQL evidence remains in the checkpoint. Staff invitations/assignments/grants, finance persistence and named acceptance decisions remain incomplete.
+The 18 November PostgreSQL update adds separate Identity and finance migrations and shared encrypted connector storage. Local tests verified registration, tenant isolation, concurrent startup, rollback, restart persistence and the production container’s TLS connection. [Database configuration](DATABASE_CONFIGURATION.md) · [Vercel deployment](VERCEL_DEPLOYMENT.md).
+
+The 17 November checkpoint introduced provider selection during registration and recorded 62 HTTP checks, 38 browser checks, and six legacy schema upgrade checks. The local Identity store was backed up and its original data verified after the provider-column upgrade. [Registration](COMPANY_REGISTRATION.md) · [Checkpoint](delivery/CHECKPOINT.md).
 
 Status date: 4 November 2026. Baseline: [original design](../Dike_ASPNET_Core_Design_and_Plan.docx). This is the consolidated delivery status; the week numbers below are planned phases, not elapsed time or completed calendar weeks. Work has crossed phase boundaries. No finance acceptance gate has yet been signed off.
 
@@ -92,20 +94,20 @@ Current restriction: movement imports require a SAR bank account, SAR subsidiary
 
 ### Storage and jobs
 
-- [x] SQLite persistence for users, companies and Identity data.
-- [x] Initial SQL Server EF mappings for finance entities, rowversions and reservation uniqueness.
-- [x] Encrypted, company-separated local NetSuite state and evidence; atomic state-file replacement.
-- [x] In-process per-company serialization for manual collection.
-- [ ] SQL Server endpoint and nonempty `ConnectionStrings:Dike` configuration.
-- [ ] Reviewed migrations and complete finance schema, including imports, balances and exceptions.
+- [x] PostgreSQL Identity and company profiles, with explicit SQLite development access for the legacy workspace.
+- [x] PostgreSQL finance migrations, optimistic concurrency and active movement uniqueness.
+- [x] Company-scoped, encrypted PostgreSQL documents for NetSuite and Odoo, including NetSuite evidence.
+- [x] Atomic PostgreSQL writes for NetSuite state and its associated evidence.
+- [ ] Hosted PostgreSQL endpoint and production connection settings.
+- [ ] Complete the finance schema for imports, balances and exceptions.
 - [ ] Ingestion services writing normalized data to the finance database.
 - [ ] Durable SQL job claims, lease generation checks, expiry/reclaim, retries and worker execution.
 - [ ] Approved refresh schedule, overlap windows and full-period reconciliation checks.
-- [ ] Distributed coordination and multi-instance storage support.
-- [ ] Production secrets/evidence storage, retention policy and protected persistent Data Protection keys.
+- [x] Cross-instance connector storage and locking in PostgreSQL.
+- [ ] Configure production credentials, certificate, backups and evidence retention with the hosting provider.
 - [ ] Backup and restore rehearsal covering identity, finance, evidence and encryption keys.
 
-The worker intentionally does not process imports. The NetSuite UI currently collects synchronously. A connection string alone neither creates the finance tables nor moves encrypted extracts into SQL Server.
+The worker is disabled. The NetSuite UI collects synchronously and stores encrypted extracts. Publishing normalized finance rows remains outstanding.
 
 ### Bank ingestion and reconciliation
 
@@ -144,15 +146,15 @@ Reproduction instructions are in [README](../README.md). Test sources: [domain c
 | --- | --- | --- |
 | Company OIDC sign-in | Direct company registration requested by user | OIDC authority/client settings no longer apply to website login |
 | Reuse working NetSuite client | No existing client supplied; new read-only adapter implemented | Requires account-specific live validation before acceptance |
-| Shared SQL Server persistence | Identity SQLite plus encrypted local NetSuite files; finance EF model only | SQL migrations/publication and production storage remain outstanding |
-| Background synchronization | Manual synchronous collection with single-instance lock | No restart-safe job execution or scheduled refresh yet |
+| Shared relational persistence | PostgreSQL stores Identity, encrypted connector documents and the initial finance model | Provisioning the production database and publishing normalized data remain outstanding |
+| Background synchronization | Manual collection uses a transaction-scoped PostgreSQL lock | Restart-safe job execution and scheduling remain outstanding |
 | One company pilot | Company-separated registration and credentials supported | Fine-grained account grants and real multi-company finance testing still required |
 | One accounting book/SAR | Primary-book/SAR-only movement guard | Secondary-book mapping requires explicit additional implementation |
 
 ## Next implementation order
 
 1. Configure a permitted NetSuite integration in the website and complete one live account/period GL comparison. Record verified fields, scope, row keys, totals and finance approval; do not store secrets in these documents.
-2. Select the development/production SQL Server instance, configure its finance connection string, create reviewed migrations, complete missing entities and implement scoped snapshot publication. Preserve current Identity and encrypted evidence during any migration.
+2. Configure the hosted PostgreSQL connection, extend the finance schema and implement scoped snapshot publication. Preserve current Identity and encrypted evidence during any data transfer.
 3. Implement resource grants and durable leased jobs before enabling unattended/multi-instance synchronization.
 4. Confirm the CSV contract and deliver bank CSV ingestion plus a real bank/book comparison workflow; confirm Neotek sandbox/product access in parallel.
 5. Implement transactional review, exceptions, invalidation and workpaper export, then integrate Neotek and the second bank account.
@@ -161,7 +163,7 @@ Reproduction instructions are in [README](../README.md). Test sources: [domain c
 ## Required external inputs
 
 - NetSuite integration credentials entered in the app, record permissions, primary book/subsidiary IDs and a reference GL report.
-- SQL Server target/authentication and approved secrets, backup and evidence retention arrangements.
+- Hosted PostgreSQL endpoint, database role, key backups and evidence retention arrangements.
 - Bank statement CSV contract/sample and Neotek subscription, bank support, authorization and sandbox details.
 - Finance reviewer, agreed statement period, two account mappings, volume dataset and response-time target.
 

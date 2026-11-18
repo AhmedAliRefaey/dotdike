@@ -1,13 +1,38 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Npgsql;
+using Microsoft.AspNetCore.Identity;
 
 namespace Dike.Web.Authentication;
 
-// Additive upgrade for the existing EnsureCreated-based SQLite development store.
 public static class IdentitySchema
 {
+    public static async Task InitializeRolesAsync(CompanyIdentityDbContext db, RoleManager<IdentityRole> roles, CancellationToken ct = default)
+    {
+        async Task SeedAsync()
+        {
+            foreach (var role in new[] { "Administrator", "Accountant", "Controller", "Viewer" })
+                if (!await roles.RoleExistsAsync(role))
+                {
+                    var result = await roles.CreateAsync(new IdentityRole(role));
+                    if (!result.Succeeded) throw new InvalidOperationException("Could not initialize company roles.");
+                }
+        }
+        if (!db.Database.IsNpgsql()) { await SeedAsync(); return; }
+        await using var transaction = await db.Database.BeginTransactionAsync(ct);
+        await PostgresStorageLock.AcquireAsync((NpgsqlConnection)db.Database.GetDbConnection(),
+            (NpgsqlTransaction)transaction.GetDbTransaction(), "Dike:IdentityRoles:v1", ct);
+        await SeedAsync();
+        await transaction.CommitAsync(ct);
+    }
+
     public static async Task InitializeAsync(CompanyIdentityDbContext db, Guid? legacyOdooCompany, CancellationToken ct = default)
     {
+        if (db.Database.IsNpgsql())
+        {
+            await db.Database.MigrateAsync(ct);
+            return;
+        }
         await db.Database.EnsureCreatedAsync(ct);
         await using var transaction = await db.Database.BeginTransactionAsync(ct);
         await using var command = db.Database.GetDbConnection().CreateCommand();

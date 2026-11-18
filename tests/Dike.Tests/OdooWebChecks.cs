@@ -245,9 +245,13 @@ internal static class OdooWebChecks
         });
         await Check("legacy unbound connection is retained until explicit verification", async () =>
         {
-            var saved = (await f.Store.ReadAsync(f.A, default))!;
-            saved.BaseUrl = null;
-            await f.Store.WriteAsync(f.A, saved, default);
+            await f.Store.LockedAsync(f.A, async session =>
+            {
+                var saved = (await f.Store.ReadAsync(session, f.A, default))!;
+                saved.BaseUrl = null;
+                await f.Store.WriteAsync(session, f.A, saved, default);
+                return true;
+            }, default);
             var original = await File.ReadAllTextAsync(f.StateFile(f.A));
             var calls = f.Factory.Calls;
             var view = await api.ReadAsync(a);
@@ -343,7 +347,7 @@ internal static class OdooWebChecks
             var config = f.Configuration = new ConfigurationBuilder().AddInMemoryCollection(new Dictionary<string, string?> {
                 ["Odoo:StoragePath"] = f.Root, ["Odoo:LocalCompanyId"] = f.A.ToString(), ["Odoo:ApiKey"] = Key, ["Odoo:BaseUrl"] = BaseUrl }).Build();
             var access = new CompanyAdministrator(f.Db, Options.Create(new IdentityOptions()), new UpperInvariantLookupNormalizer(), TimeProvider.System);
-            f.Store = new(new EphemeralDataProtectionProvider(), f.Environment, config);
+            f.Store = new(new EphemeralDataProtectionProvider(), new FileCompanyDocumentStorage(f.Environment, config));
             f.Connector = new(access, f.Store, f.Factory, config, f.Environment, TimeProvider.System);
             return f;
         }

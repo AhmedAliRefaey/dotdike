@@ -9,11 +9,13 @@ The [Dike design system](docs/design/README.md) now covers the public and authen
 - `src/Dike.Web`: Areopagus Razor UI, direct company registration/login, company dashboard, scoped NetSuite collection and [Odoo connection/account/GL preview pages](docs/ODOO_WEB.md).
 - `src/Dike.Worker`: Alecto background host; imports intentionally disabled until safe durable processing exists.
 - `src/Dike.Core`: provider interfaces, normalized contracts, Megaera matching and Tisiphone review policies.
-- `src/Dike.Infrastructure`: initial SQL Server EF model, read-only NetSuite SuiteQL connector and bounded Odoo JSON-2 client.
+- `src/Dike.Infrastructure` contains the PostgreSQL finance model and migrations, the read-only NetSuite SuiteQL connector and the Odoo JSON-2 client.
 - `tests/Dike.Tests`: executable domain, Identity, NetSuite and Odoo fixture checks without a test framework dependency.
 - `tools/Dike.OdooValidation`: local read-only JSON-2 testing with company/account selection and weekly/monthly/custom periods.
 
 ## Build and verify
+
+Set `DATABASE_URL` to your PostgreSQL database before running the web project. For hosted deployments, configure the shared encryption certificate as well. [Local database setup](docs/DATABASE_CONFIGURATION.md) · [Vercel deployment](docs/VERCEL_DEPLOYMENT.md).
 
 ```powershell
 dotnet restore Dike.slnx
@@ -22,7 +24,7 @@ dotnet run --project tests/Dike.Tests
 dotnet run --project src/Dike.Web
 ```
 
-Register a company at `/Auth/Register`, explicitly choose **NetSuite** or **Odoo**, then complete its profile. The workspace shows only the chosen provider and blocks the other provider's pages/actions. Existing administrators can change the choice in **Company profile** without deleting previously saved connection settings. Identity uses local SQLite persistence; no OIDC credentials are needed. Configure `ConnectionStrings__Dike` separately when connecting the finance database. Set `AllowedHosts` for deployment. Production requires HTTPS; the local Development profile supports HTTP on port 5080. Connection pages require a current company administrator. [Selection, upgrade and verification details](docs/COMPANY_REGISTRATION.md).
+Register a company at `/Auth/Register`, choose **NetSuite** or **Odoo**, then complete its profile. Administrators can change the selection in **Company profile** and retain saved settings for both providers. Identity, company profiles and encrypted connector documents are stored in PostgreSQL. The local Development profile listens on port 5080. [Registration and provider selection](docs/COMPANY_REGISTRATION.md).
 
 No existing NetSuite client or pilot code was supplied, so a new connector was implemented. Configure it through `/Accounts/NetSuite`, load accounts and collect a selected GL period. Company administrators are scoped to their own connection. Fine-grained subsidiary/account grants and real finance acceptance remain pending. See [NetSuite instructions](docs/NETSUITE_CONNECTOR.md); live queries and report agreement have not been validated.
 
@@ -48,14 +50,14 @@ The subsequent [staff directory foundation](docs/delivery/T05_IDENTITY_SECURITY_
 
 See [all checkpoints and original six-week timeline](docs/PROJECT_STATUS.md) for completed, partial and outstanding work, evidence limits and the next implementation order. The app is not production-ready and no planned finance acceptance gate has been signed off.
 
-Current storage: SQLite Identity, encrypted local NetSuite snapshots and Odoo connection/previews, and an unconfigured SQL Server finance model. See [database configuration](docs/DATABASE_CONFIGURATION.md). Local encrypted evidence exists; SQL publication, durable jobs, Neotek/CSV ingestion, review workflows, exports and production operations remain outstanding.
+PostgreSQL stores Identity, encrypted NetSuite and Odoo documents, and the initial finance schema. Publishing normalized data, durable jobs, Neotek/CSV ingestion, review workflows and exports remain outstanding. [Database configuration](docs/DATABASE_CONFIGURATION.md).
 
 Supporting documents: [implementation plan](docs/IMPLEMENTATION_PLAN.md), [company registration](docs/COMPANY_REGISTRATION.md), [NetSuite connector](docs/NETSUITE_CONNECTOR.md). Historical [OIDC instructions](docs/OIDC_SETUP.md) are superseded.
 
-The [SQL concurrency probe](tests/sql-concurrency-smoke.ps1) tests the proposed guard pattern against local SQL Server using synthetic tables. It requires the installed `MSSQLLocalDB` development instance and uses only a generated database; it does not apply application migrations. Inspect its plan without `-Run`, or execute and automatically remove the test database with:
+Run the PostgreSQL storage and concurrency checks against a local test server with `DIKE_TEST_POSTGRES` configured. They exercise schema creation, cross-instance writes, finance constraints, encrypted storage and reopening the database. [Test connection setup](docs/DATABASE_CONFIGURATION.md#hosted-deployment-and-verification).
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File tests/sql-concurrency-smoke.ps1 -Run
+dotnet run --project tests/Dike.Tests -- --hosted-storage
 ```
 
 To repeat the isolated web smoke checks after changes:

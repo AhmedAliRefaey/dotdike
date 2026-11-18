@@ -1,59 +1,51 @@
-# Database configuration and storage checkpoints
+# PostgreSQL configuration
 
-Verified configuration date: 4 November 2026. See [project status](PROJECT_STATUS.md) for delivery gates.
+Dike.Web uses PostgreSQL by default in Development and Production. Point it at a database created for Dike. The database role needs to create the `dike` and `dike_finance` schemas on first startup and to apply subsequent EF Core migrations. A database owner can also create the two schemas in advance and assign ownership to the application role.
 
-| Data | Current provider/location | State |
-| --- | --- | --- |
-| Users, roles, company profiles and selected connection provider | SQLite at `src/Dike.Web/App_Data/identity.db` by default | Implemented; provider is constrained to NetSuite or Odoo |
-| Normalized finance data | SQL Server via `ConnectionStrings:Dike` | EF model exists; connection currently empty; migrations/publication pending |
-| NetSuite credentials, accounts and GL extracts | Encrypted files under `src/Dike.Web/App_Data/NetSuite/<company-id>/` | Implemented; folder created on configuration; no live provider acceptance yet |
-| Odoo credentials, loaded catalogs and latest GL preview | Encrypted files under `src/Dike.Web/App_Data/Odoo/<company-id>/` | Implemented; bounded read-only preview, not a complete finance ledger |
+| Schema | Stored data |
+| --- | --- |
+| `dike` | Companies, ASP.NET Core Identity users and roles, encrypted Odoo and NetSuite documents, and the hosted Data Protection key ring |
+| `dike_finance` | Account mappings, movements, jobs, match groups and members, and audit events |
 
-## Development
+Both schemas use the same database by default. Set `ConnectionStrings__Dike` only when using a separate PostgreSQL database for finance. Each schema has its own migration history. The finance tables support the existing EF model. Publishing connector extracts into the ledger and processing durable jobs remain separate application work.
 
-The Identity default is constructed from the web content root:
+## Local development
 
-```text
-Data Source=C:\Dike\src\Dike.Web\App_Data\identity.db
+With PostgreSQL 17 running locally, create a database named `dike` owned by your application role. Set its URL in the same PowerShell session as the web app. Replace the example credentials with your own and percent-encode special characters in URL credentials.
+
+```powershell
+$env:DATABASE_URL = 'postgresql://dike_user:<password>@localhost:5432/dike'
+dotnet run --project src/Dike.Web
 ```
 
-Override `ConnectionStrings:Identity` / `ConnectionStrings__Identity` to use another SQLite path. This setting still selects SQLite; supplying a SQL Server connection string here does not change the provider.
+Alternatively store the connection in Development User Secrets for `src/Dike.Web`. Configuration is checked in this order, skipping empty values.
 
-On 17 November, the local Identity store received the tested additive `Companies.ConnectionProvider` upgrade after backup. Startup applies it only when the column is absent; existing choices survive restart. Original row values/counts were verified unchanged apart from the added provider field. See [company registration and upgrade details](COMPANY_REGISTRATION.md). Switching providers preserves both company-specific connection stores; the selected provider controls which pages/actions are available. This does not introduce finance migrations or change SQL Server configuration.
+1. `ConnectionStrings__Identity` (or `ConnectionStrings:Identity` in User Secrets)
+2. `DATABASE_URL`
+3. `POSTGRES_URL`
 
-The checked [application configuration](../src/Dike.Web/appsettings.json) currently contains an empty finance connection:
+Each setting accepts a PostgreSQL URL or an Npgsql connection string. Development uses the ASP.NET Core key ring on the local machine unless a Data Protection certificate is supplied. With a certificate, the encrypted key ring is stored in PostgreSQL and shared across instances. Hosted connections validate both the server certificate and its hostname. [Npgsql connection parameters](https://www.npgsql.org/doc/connection-string-parameters.html).
 
-```json
-"ConnectionStrings": { "Dike": "" }
+## Existing local data
+
+To open the existing SQLite workspace, set `$env:Storage__Provider = 'Sqlite'` and run Dike.Web in Development. It uses `src/Dike.Web/App_Data/identity.db` and the company-specific Odoo and NetSuite folders. A SQLite-specific `ConnectionStrings__Identity` can override the local path. Clear any PostgreSQL override for that setting before opening this workspace.
+
+A new PostgreSQL database starts with the schema and roles. Transferring an existing workspace requires copying companies, Identity records including their IDs and password hashes, and encrypted connector documents with a compatible key ring. Preserve the source database, connector files, and original Data Protection keys together until sign-in and decryption have been verified on the destination.
+
+## Hosted deployment and verification
+
+Configure the persistent certificate and database in your hosting environment. Back up PostgreSQL and the certificate and its password separately. [Vercel deployment steps](VERCEL_DEPLOYMENT.md).
+
+The PostgreSQL integration checks use synthetic data and automatically create and drop a uniquely named database. Supply a loopback test server with a role that can create databases.
+
+```powershell
+$env:DIKE_TEST_POSTGRES = 'postgresql://postgres:<password>@127.0.0.1:5432/postgres'
+dotnet run --project tests/Dike.Tests -- --hosted-storage
 ```
 
-Example only, for an installed local SQL Server instance using Windows authentication:
+To run the registration and connector HTTP checks against the official PostgreSQL Docker image, pass the name of a local test container published on IPv4 loopback. The script uses its own temporary database.
 
-```json
-"ConnectionStrings": {
-  "Dike": "Server=localhost;Database=Dike;Integrated Security=True;Encrypt=True;TrustServerCertificate=True"
-}
+```powershell
+dotnet publish src/Dike.Web/Dike.Web.csproj -c Release -p:UseAppHost=false -o artifacts/registration-check
+powershell -NoProfile -File tests/registration-smoke.ps1 -PostgresContainer <container-name>
 ```
-
-This example has NOT been applied or tested. Replace the server/instance with the actual target. Prefer development user secrets for credentials; do not commit passwords.
-
-## Production
-
-Supply `ConnectionStrings__Dike` through environment configuration or an approved secrets manager. Use encryption and a trusted SQL Server certificate, with `TrustServerCertificate=False`. Configure database permissions for the application. Do not copy the development certificate-bypass setting into production.
-
-Adding this configuration does not create tables, change Identity's provider or import existing NetSuite files. Reviewed finance migrations, database deployment, scoped ingestion persistence and a data migration plan are still required. No database was created or migrated as part of this documentation update.
-
-## Evidence and key storage
-
-`NetSuite:StoragePath` / `NetSuite__StoragePath` overrides the encrypted connector storage root. The root must be private to the application, not served from `wwwroot`. The current store is a single-instance pilot implementation, not a distributed database or managed vault.
-
-Back up Identity consistently with its SQLite WAL state. Preserve Data Protection keys together with encrypted NetSuite state/evidence: copying encrypted files alone is insufficient to guarantee recovery. Production key persistence/encryption, evidence retention and a restore rehearsal remain pending.
-
-## Remaining checklist
-
-- [ ] Select and test SQL Server endpoint and authentication.
-- [ ] Complete/review finance schema and migrations.
-- [ ] Publish normalized complete snapshots to SQL with company/account scope.
-- [ ] Define migration of existing identity/evidence without data loss.
-- [ ] Configure production key and secret storage, backups and retention.
-- [ ] Rehearse restoring identity, finance data and encrypted evidence.

@@ -41,7 +41,7 @@ The preview supports one to five loaded bank/cash accounts, at most 31 inclusive
 
 ## Connection and state behavior
 
-- Credentials, loaded catalogs and the last successful preview are protected using ASP.NET Core Data Protection in `src/Dike.Web/App_Data/Odoo/<Dike-company-id>/state.enc`. The protection purpose includes the company ID; copying the encrypted file to another company's folder does not make it readable there. Preserve the application's Data Protection keys when backing up this local state.
+- Credentials, catalogs and the last successful preview use company-scoped ASP.NET Core Data Protection. PostgreSQL stores the encrypted documents. The explicit SQLite development mode uses `src/Dike.Web/App_Data/Odoo/<Dike-company-id>/state.enc`. Back up the corresponding keys with the application data. [Database configuration](DATABASE_CONFIGURATION.md).
 - The stored state never becomes a page model, browser response, cookie or log entry. Pages receive a credential-free projection. Errors are translated safe messages; submitted keys are not reflected into the password field.
 - Every read and action resolves the Dike company and current Administrator membership from Identity, checks the security stamp and lockout, and ignores browser-supplied company/role claims. Mutations recheck membership before saving the network result. This is a local preview boundary, not the future transactional finance authorization fence.
 - Local-key import is enabled only in Development and only for the explicitly bound Dike company. New web connections can use a separately entered key. [Local configuration and rotation](ODOO_LOCAL_SETUP.md).
