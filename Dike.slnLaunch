@@ -1,0 +1,11 @@
+[
+  {
+    "Name": "Dike.Web",
+    "Projects": [
+      {
+        "Path": "src\\Dike.Web\\Dike.Web.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
