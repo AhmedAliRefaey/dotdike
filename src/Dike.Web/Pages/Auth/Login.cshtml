@@ -1,0 +1,17 @@
+@page
+@model Dike.Web.Pages.Auth.LoginModel
+@{ ViewData["Title"] = "Company sign-in"; }
+<div class="auth-grid">
+    <aside><h1>@T["Sign in to your workspace."]</h1><p>@T["Use the email and password you registered with Dike."]</p><p>@T["New to Dike?"] <a asp-page="Register">@T["Register your company"]</a></p><img class="auth-art" src="~/images/balance-study.png" asp-append-version="true" alt="" width="1536" height="1024" /></aside>
+    <section class="auth-card" aria-labelledby="login-heading">
+        <h2 id="login-heading">@T["Company sign-in"]</h2>
+        <form method="post">
+            <div asp-validation-summary="All" class="validation" role="alert"></div>
+            <input type="hidden" asp-for="ReturnUrl" />
+            <label asp-for="Input.Email"></label><input asp-for="Input.Email" autocomplete="username" dir="ltr" />
+            <label asp-for="Input.Password"></label><input asp-for="Input.Password" autocomplete="current-password" dir="ltr" />
+            <button class="button form-submit" type="submit">@T["Sign in"] <svg class="icon directional" aria-hidden="true"><use href="#i-arrow" /></svg></button>
+        </form>
+        <p class="muted">@T["Your Dike password is separate from your connection credentials."]</p>
+    </section>
+</div>

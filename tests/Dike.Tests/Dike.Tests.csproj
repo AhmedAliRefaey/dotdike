@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType></PropertyGroup>
+  <ItemGroup><ProjectReference Include="../../src/Dike.Core/Dike.Core.csproj" /><ProjectReference Include="../../src/Dike.Infrastructure/Dike.Infrastructure.csproj" /><ProjectReference Include="../../src/Dike.Web/Dike.Web.csproj" /></ItemGroup>
+</Project>

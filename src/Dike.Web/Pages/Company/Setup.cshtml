@@ -1,0 +1,19 @@
+@page
+@model Dike.Web.Pages.Company.SetupModel
+@{ ViewData["Title"] = "Company profile"; }
+<div class="page-heading"><div><h1>@T["Company profile"]</h1><p>@T["Company details establish the scope of your financial close."]</p></div></div>
+<div class="form-layout">
+    <section class="auth-card" aria-labelledby="company-heading"><h2 id="company-heading">@T["Company details"]</h2>
+        <form method="post"><div asp-validation-summary="All" class="validation" role="alert"></div>
+            <label asp-for="Input.Name"></label><input asp-for="Input.Name" autocomplete="organization" dir="auto" />
+            <label asp-for="Input.Country"></label><input asp-for="Input.Country" autocomplete="country-name" dir="auto" />
+            <label asp-for="Input.ConnectionProvider"></label><select asp-for="Input.ConnectionProvider" required aria-describedby="provider-help"><option value="">@T["Choose a provider"]</option><option value="NetSuite">NetSuite</option><option value="Odoo">Odoo</option></select>
+            <small id="provider-help">@T["Only this provider appears in your workspace. Changing it keeps any previously saved connection settings."]</small>
+            <p class="currency-note"><strong>@T["Accounting currency"]:</strong> <bdi dir="ltr">SAR</bdi> — @T["Saudi Riyal"]</p>
+            <label asp-for="Input.RegistrationNumber"></label><input asp-for="Input.RegistrationNumber" dir="ltr" />
+            <label asp-for="Input.Address"></label><textarea asp-for="Input.Address" autocomplete="street-address" dir="auto"></textarea>
+            <button class="button" type="submit">@T["Save and open workspace"] <svg class="icon directional" aria-hidden="true"><use href="#i-arrow" /></svg></button>
+        </form>
+    </section>
+    <aside><h2>@T["A clear starting point"]</h2><ol class="steps"><li>@T["Company account created"]</li><li class="current">@T["Complete company profile"]</li><li>@T["Open your workspace"]</li></ol><p>@T["The initial reconciliation release supports SAR accounts. Configure your selected provider after saving your profile."]</p></aside>
+</div>

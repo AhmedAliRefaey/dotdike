@@ -1,0 +1,29 @@
+@page
+@model Dike.Web.Pages.Company.StaffModel
+@{ ViewData["Title"] = "Staff directory"; }
+<div class="page-heading"><div><h1>@T["Staff directory"]</h1><p>@T["Company members, assigned roles and account security status."]</p></div><span class="badge badge-neutral">@T["View only"]</span></div>
+<section class="panel" aria-labelledby="staff-heading">
+    <div class="panel-heading"><div><h2 id="staff-heading">@T["Company staff"]</h2><p>@T[Model.Directory.TotalCount == 1 ? "{0} member" : "{0} members", Model.Directory.TotalCount] · @T["Invitations and role changes are not yet available."]</p></div></div>
+    <div class="table-scroll" role="region" aria-label="@T["Company staff table"]" tabindex="0">
+        <table class="staff-table">
+            <caption class="visually-hidden">@T["Members of your company, their roles, and email, MFA and sign-in lockout status."]</caption>
+            <thead><tr><th scope="col">@T["Member"]</th><th scope="col">@T["Roles"]</th><th scope="col">@T["Email"]</th><th scope="col">@T["MFA"]</th><th scope="col">@T["Sign-in lockout"]</th></tr></thead>
+            <tbody>
+            @foreach (var member in Model.Directory.Members)
+            {
+                <tr>
+                    <th scope="row"><strong><bdi>@member.FullName</bdi></strong><small><bdi dir="ltr">@member.Email</bdi></small></th>
+                    <td>@(member.Roles.Count == 0 ? T["No roles assigned"].Value : string.Join(", ", member.Roles.Select(role => T[role].Value)))</td>
+                    <td><span class="badge @(member.EmailConfirmed ? "" : "badge-pending")">@T[member.EmailConfirmed ? "Confirmed" : "Unconfirmed"]</span></td>
+                    <td><span class="badge @(member.TwoFactorEnabled ? "" : "badge-neutral")">@T[member.TwoFactorEnabled ? "Enabled" : "Not enabled"]</span></td>
+                    <td>@T[member.IsLockedOut ? "Locked" : "Not locked"]</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+    <nav class="staff-pagination" aria-label="@T["Staff pages"]"><span>@T["Page {0} of {1}", Model.Directory.PageNumber, Model.Directory.TotalPages]</span><div>
+        @if (Model.Directory.HasPreviousPage) { <a class="button button-secondary" asp-page="Staff" asp-route-pageNumber="@(Model.Directory.PageNumber - 1)" rel="prev">@T["Previous"]</a> }
+        @if (Model.Directory.HasNextPage) { <a class="button button-secondary" asp-page="Staff" asp-route-pageNumber="@(Model.Directory.PageNumber + 1)" rel="next">@T["Next"]</a> }
+    </div></nav>
+</section>

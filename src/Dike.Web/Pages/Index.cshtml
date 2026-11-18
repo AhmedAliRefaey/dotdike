@@ -1,0 +1,31 @@
+@page
+@model Dike.Web.Pages.IndexModel
+@{ ViewData["Title"] = "A clearer financial close"; }
+<section class="hero" aria-labelledby="home-heading">
+    <div class="hero-copy">
+        <h1 id="home-heading">@T["A fair view."]<br />@T["A clearer close."]</h1>
+        <p>@T["Bring bank and accounting evidence into a clearer close. Start with your company, connect Odoo or NetSuite, and inspect posted GL activity."]</p>
+        <div class="hero-actions">
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <a class="button" asp-page="/Company/Index">@T["Open your workspace"] <svg class="icon directional" aria-hidden="true"><use href="#i-arrow" /></svg></a>
+            }
+            else
+            {
+                <a class="button" asp-page="/Auth/Register">@T["Create your workspace"] <svg class="icon directional" aria-hidden="true"><use href="#i-arrow" /></svg></a>
+                <a class="text-link" asp-page="/Auth/Login">@T["Sign in"]</a>
+            }
+        </div>
+        <p class="hero-note">@T["Your company. Your evidence. Your judgement."]</p>
+    </div>
+    <img class="hero-art" src="~/images/balance-study.png" asp-append-version="true" width="1536" height="1024" fetchpriority="high" alt="@T["A level brass beam resting on two limestone blocks, a study in balance."]" />
+</section>
+<section class="approach" aria-labelledby="approach-heading">
+    <div class="section-heading"><h2 id="approach-heading">@T["Two sources. Human judgement."]</h2><span>@T["The Dike approach"]</span></div>
+    <div class="principles">
+        <article><span class="step-number">01</span><h3>@T["Establish the facts"]</h3><p>@T["Inspect posted accounting movements for your permitted company, accounts and period."]</p></article>
+        <article><span class="step-number">02</span><h3>@T["Examine the differences"]</h3><p>@T["Bank comparison and explainable proposals are the next step."]</p></article>
+        <article><span class="step-number">03</span><h3>@T["Keep the reasoning"]</h3><p>@T["Independent review and evidence workpapers are planned."]</p></article>
+    </div>
+</section>
+<div class="release-note"><span class="status-dot" aria-hidden="true"></span><p><strong>@T["Available now: company setup, staff directory, NetSuite GL collection and Odoo GL preview."]</strong><br />@T["Bank imports, comparison, review and exports are not yet enabled."]</p></div>

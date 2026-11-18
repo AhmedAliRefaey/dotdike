@@ -1,0 +1,248 @@
+﻿{
+    "capturedAtUtc":  "2026-11-16T14:00:20.8615752+00:00",
+    "purpose":  "T01 source baseline before delivery implementation; no runtime data or secrets included",
+    "sdk":  "10.0.401",
+    "gitCommit":  null,
+    "taskSource":  {
+                       "path":  "C:\\Users\\ahmed\\Documents\\Codex\\2026-11-05\\re\\outputs\\dike_diagrams_and_tasks.md",
+                       "sha256":  "C427DBF36BCD234A990EFF20E70AD4A493F1C778680D322E6287305D350B3384"
+                   },
+    "files":  [
+                  {
+                      "path":  ".gitignore",
+                      "sha256":  "3048A5C52F83185556263812A2C1FE5BB4B35A55CEB59341556A80B4495C5D97"
+                  },
+                  {
+                      "path":  ".vscode/tasks.json",
+                      "sha256":  "2C9BBDB1938139D913B2CBE6C0B41E8137F255A5C1F1F6158DA088CB369B2C51"
+                  },
+                  {
+                      "path":  "design_draft.md",
+                      "sha256":  "94676998C33C33B104F7834415585D6CCC597BDDAC357E59775F69417B396060"
+                  },
+                  {
+                      "path":  "Dike.slnx",
+                      "sha256":  "A6BE159C908C5DB85A4065DD192233AB086DB750798D6DADF218F62D500A1171"
+                  },
+                  {
+                      "path":  "Directory.Build.props",
+                      "sha256":  "BF23A5A89D4DA1F7B12145F025D86EE88AA6F6F6B2DBB7D2FA4BC042FFF5FE50"
+                  },
+                  {
+                      "path":  "docs/COMPANY_REGISTRATION.md",
+                      "sha256":  "F80FE037DE86DEC5AAFCF7CC876B2A2A6A808754710EBF94364D91D8F812DD80"
+                  },
+                  {
+                      "path":  "docs/DATABASE_CONFIGURATION.md",
+                      "sha256":  "1508D0292A9EE9DAA6B66C734C80461BF4214586E26E6E3F5BD3F9C9CF8D7357"
+                  },
+                  {
+                      "path":  "docs/IMPLEMENTATION_PLAN.md",
+                      "sha256":  "4FD9CBDA303168E0D9532EAE208F554C0CF404B2096359B948D858ABF9B3360C"
+                  },
+                  {
+                      "path":  "docs/NETSUITE_CONNECTOR.md",
+                      "sha256":  "D2D7F0F4DD9E38E0692451E63E967394AE1893013C12C20746BF763F9B418ECE"
+                  },
+                  {
+                      "path":  "docs/OIDC_SETUP.md",
+                      "sha256":  "08A7839659BC49E7F1D90ED372FE43E8F13CE57FA35E35BD3FC4CD3CF9A6EB55"
+                  },
+                  {
+                      "path":  "docs/PROJECT_STATUS.md",
+                      "sha256":  "18842331A9D634B7D5CFE7A1CF46CE53AD722AF68C5ADA22FEE1B66B5FBE16A7"
+                  },
+                  {
+                      "path":  "README.md",
+                      "sha256":  "C3EB5F5020A08933CDFF03AB146C331714B0F915E6C56EEC07FB376CE74F0348"
+                  },
+                  {
+                      "path":  "src/Dike.Core/Dike.Core.csproj",
+                      "sha256":  "8D654C44B7BEBB6B31A9F2F606927F45B5072193ADC4EEF8CCE3F3CF3B278DF3"
+                  },
+                  {
+                      "path":  "src/Dike.Core/MatchingEngine.cs",
+                      "sha256":  "DF8B1C14C56E5EA6DE729DB10AB635531D23F75D4CB486E07D02FD7F3DA45DB9"
+                  },
+                  {
+                      "path":  "src/Dike.Core/Models.cs",
+                      "sha256":  "C0EBABC918557B3BCB0543F950E58F89FEDC90D913750BC9638179D3F886EC31"
+                  },
+                  {
+                      "path":  "src/Dike.Core/ReviewPolicy.cs",
+                      "sha256":  "CBA0333C2FA2DF2B686B75027FB45DDB9125C7F42367636FB062112B5DA47AE5"
+                  },
+                  {
+                      "path":  "src/Dike.Infrastructure/Dike.Infrastructure.csproj",
+                      "sha256":  "8D1BF1008B021F4D26D6B08EE69A6FFEA3B1AA51BFDC713AA08236B1E9B343DB"
+                  },
+                  {
+                      "path":  "src/Dike.Infrastructure/DikeDbContext.cs",
+                      "sha256":  "C41FDFF8E35FFBCED1600596B27BEBF5EF65F37445509C27558DA9301488CABD"
+                  },
+                  {
+                      "path":  "src/Dike.Infrastructure/NetSuite/NetSuiteConnection.cs",
+                      "sha256":  "FEEF40BF657F459014B2CA3A30BF5F95214BF2E0AC8A442C9609A5948AC9D66B"
+                  },
+                  {
+                      "path":  "src/Dike.Infrastructure/NetSuite/NetSuiteReader.cs",
+                      "sha256":  "FF5FFE21EFA356890568BC938179F7242BE3611D70D8EAF421EC73CBEAEA439A"
+                  },
+                  {
+                      "path":  "src/Dike.Infrastructure/UnconfiguredNetSuiteReader.cs",
+                      "sha256":  "28C636E20AF3E0BABB36E96C26221A1A4AA0A978E799C1D6CB029F5FD4D79D24"
+                  },
+                  {
+                      "path":  "src/Dike.Web/appsettings.json",
+                      "sha256":  "4A5703568D9A693A7E3E4E3FDFC5CCE66F01C09B1E0400B055930F3E953FCB55"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Authentication/CompanyIdentityDbContext.cs",
+                      "sha256":  "8657ED5999D63820C1EEFF8A5F79E7646FA61103DF21F5E7C7D0036DD78C0551"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Authentication/CompanyNetSuite.cs",
+                      "sha256":  "20B9E6C0E70340AF1E056DD94DE3655B1AEAAA2C10FDE38F750AD0A09CA7196E"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Authentication/SignInState.cs",
+                      "sha256":  "DC2E4788D6054DA48EF90F76E0C0FCFE1B4C6A04CF87B06EB23ABD8FB74A2602"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Authentication/StaffService.cs",
+                      "sha256":  "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Dike.Web.csproj",
+                      "sha256":  "CC4A6348750A3087BC4162CB657C5A5FABC9A42483956F49ADAC5EE1268E6C92"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Pages/_ViewImports.cshtml",
+                      "sha256":  "8C0A1857C4BB1A1E431A53185E6B5F7F32ECED830B254E14F79E1A46F9067AC6"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Pages/_ViewStart.cshtml",
+                      "sha256":  "3A8C523F595B40ED4D5B54A0EA7B8A42728D368582B2A29EF12DB188990F7373"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Pages/Accounts/Index.cshtml",
+                      "sha256":  "D02D0BBAA587D80C2C4A16CD959B40B49E0F3A98AD2B5D81CFAA1861CE1DE7E9"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Pages/Accounts/Index.cshtml.cs",
+                      "sha256":  "168923E6FD1D399A091BE801DD9A72E8C80F0424FCA66D2E74C8A876331BE544"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Pages/Accounts/NetSuite.cshtml",
+                      "sha256":  "50F122B3C55AA9E7FF779B301587B044A640F7450C1B972CA5B4BBD856228DC6"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Pages/Accounts/NetSuite.cshtml.cs",
+                      "sha256":  "50726392132CB45947DA7B55A6B6C093DD7AD82B7438C7B9AA9A1A0696080F42"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Pages/Auth/AccessDenied.cshtml",
+                      "sha256":  "3E183D986B6D3675606D5BB6773D4CAAD9904C7591C393E57AE6C8F7CB0CAFCB"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Pages/Auth/ChangePassword.cshtml",
+                      "sha256":  "15DBE8DE4FF75EE550C8DF192545F1D5B889C79F1766238E8188037D1D8967DA"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Pages/Auth/ChangePassword.cshtml.cs",
+                      "sha256":  "9DB95B55FB1B6BE28102B499082DCEDE1B060709F34BF2893778E1A47FBB33CF"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Pages/Auth/Login.cshtml",
+                      "sha256":  "36654656E6C91C0B2C4FBAF2B9E9DADE7EB2BE822D5AC4D7A82EA2380B048FB1"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Pages/Auth/Login.cshtml.cs",
+                      "sha256":  "466ABCAF000A529E0456BEE11CF50CF72A543617FFE81A6579EE4AD7E48DE766"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Pages/Auth/Logout.cshtml",
+                      "sha256":  "DB2C274BB0FFE676488D43208FAE4588671A65E1CFA18E5544C4A63E08D68064"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Pages/Auth/Logout.cshtml.cs",
+                      "sha256":  "9111F0A6D962CBFDD294369E5A7CF95032916827A66B6DBD561EE8279FE63322"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Pages/Auth/Register.cshtml",
+                      "sha256":  "9271C06C88B8FD3812DCA235883CC01927B3AB23B0A46597A841803875D44379"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Pages/Auth/Register.cshtml.cs",
+                      "sha256":  "FA83218AEF4E38BCD6C358B263E862CF10A470DB56BDA9D4AE47B7165E278D67"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Pages/Company/Index.cshtml",
+                      "sha256":  "72A6ED98256A30F5A39AF95916D75A7EFEF2059560450C8073BB2005E1AC6B20"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Pages/Company/Index.cshtml.cs",
+                      "sha256":  "0A7E38C6518E342A1ED7B624939996229AC14537151D1501F81B6C758AB72325"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Pages/Company/Setup.cshtml",
+                      "sha256":  "D5306C4D346DE8D8E19176C5E97263ACC2FAEC2EEA03A21B69F14D0BDA321EDD"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Pages/Company/Setup.cshtml.cs",
+                      "sha256":  "55B150DA5D2FAD1569AEB8FD8BCA984CD356FFC6C46E4CBAE7811EE317DDD60C"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Pages/Error.cshtml",
+                      "sha256":  "BA0488320FC8F997FB7E2CF86CAD132F72D3BE8EF83E16CD6B18E3E76947B429"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Pages/Index.cshtml",
+                      "sha256":  "BC8A85445F68B30B339499127BF691A2C71520CC761EC547881824D902789488"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Pages/Shared/_Layout.cshtml",
+                      "sha256":  "74CE9FB8D5332AF2BA7EC270AC9977E2F23C61010D0B68D41A36C30BB8C2716D"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Program.cs",
+                      "sha256":  "D3B9BAB52027739A1700C51F6E1DF5A2595DAFA305E232AB7A5A2A9212654D40"
+                  },
+                  {
+                      "path":  "src/Dike.Web/Properties/launchSettings.json",
+                      "sha256":  "3B9A7E616899F7927C6A3ED76B4E9CE89CD79C9911E0544B96C4309B7A798B92"
+                  },
+                  {
+                      "path":  "src/Dike.Web/wwwroot/dike.css",
+                      "sha256":  "AC9877BB1D0E0EEA58D96CA9FA9A316E8A863AB345DB0D4279FAA654F923CE12"
+                  },
+                  {
+                      "path":  "src/Dike.Web/wwwroot/site.css",
+                      "sha256":  "7568B899EEC973C430108ABDB025D10E0FA2CF89CF95962BDF30376E94F79F46"
+                  },
+                  {
+                      "path":  "src/Dike.Worker/Dike.Worker.csproj",
+                      "sha256":  "4E9589ED6538AB1712D882CE60E50C4100B327A2FB46A490F6F5DE3A0B445665"
+                  },
+                  {
+                      "path":  "src/Dike.Worker/Program.cs",
+                      "sha256":  "9030034C0C761BFE9A00432A2EAEE89FC5D09EF20AB7D59D5D0B61A17923D7B7"
+                  },
+                  {
+                      "path":  "tests/Dike.Tests/Dike.Tests.csproj",
+                      "sha256":  "665A1E9E32BC5426AD43DAACE6A1F4C6590D32218F992908BDA60FB390125DF6"
+                  },
+                  {
+                      "path":  "tests/Dike.Tests/NetSuiteChecks.cs",
+                      "sha256":  "04F57F25107F9E817F0A2E8B51A51B79938B4BA04469A7D769E56346A56CD6A7"
+                  },
+                  {
+                      "path":  "tests/Dike.Tests/Program.cs",
+                      "sha256":  "9466B0F3CC1F46DA469F4AABA7804B9DEE2F1F0E264F2F305DA9ED852A260D1C"
+                  },
+                  {
+                      "path":  "tests/registration-smoke.ps1",
+                      "sha256":  "7A1D4C37223FF2F62390DB2D5D7D6A76DBF081638FBFB80FA7126CCBFC1BF82A"
+                  }
+              ]
+}

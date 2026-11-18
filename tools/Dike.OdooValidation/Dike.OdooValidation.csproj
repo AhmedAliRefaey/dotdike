@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <UserSecretsId>Dike-Web-6bfeaa90-471d-4e89-bc45-784c545b4c8d</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <ProjectReference Include="../../src/Dike.Infrastructure/Dike.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>

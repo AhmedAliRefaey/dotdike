@@ -1,0 +1,25 @@
+@page
+@model Dike.Web.Pages.Accounts.Odoo.ConnectionModel
+@{ ViewData["Title"] = "Odoo connection"; }
+<div class="page-heading"><div><h1>@T["Connect Odoo to your workspace."]</h1><p>@T["Verify access before loading company accounts."]</p></div><span class="badge badge-neutral">@T["Read-only access"]</span></div>
+<partial name="_OdooNav" />
+<div class="form-layout">
+    <section class="auth-card"><h2>@T["Odoo connection"]</h2><p class="form-intro"><bdi dir="ltr">@Model.Workspace.BaseUrl</bdi></p>
+        <div asp-validation-summary="All" class="validation" role="alert"></div>
+        @if (Model.Workspace.NeedsReconnect) { <p class="notice" role="status">@T["Verify the connection again for the configured Odoo server."]</p> }
+        @if (Model.Workspace.Configured) { <p class="notice" role="status">@T["A verified Odoo connection is saved for this workspace."]</p> }
+        @if (Model.Workspace.CanUseLocalConnection)
+        {
+            <form method="post" asp-page-handler="Local" class="odoo-local-connection"><p>@T["Your existing local Odoo key is assigned to this workspace."]</p><button class="button" type="submit">@T["Use existing local connection"]</button></form>
+            <p class="muted">@T["Or enter a new API key below."]</p>
+        }
+        <form method="post" autocomplete="off">
+            <label for="odoo-api-key">@T["API key"]</label><input id="odoo-api-key" name="Input.ApiKey" type="password" maxlength="512" autocomplete="new-password" dir="ltr" required />
+            <small>@T["The saved key is never displayed. Enter a new key to replace it."]</small>
+            <label asp-for="Input.Database">@T["Database name"] <span class="muted">(@T["Optional"])</span></label><input asp-for="Input.Database" maxlength="128" dir="ltr" />
+            <small>@T["Leave empty unless your Odoo administrator supplied a database name."]</small>
+            <button class="button" type="submit">@T["Verify and save connection"]</button>
+        </form>
+    </section>
+    <aside><h2>@T["Access stays with your company."]</h2><ol class="steps"><li>@T["Use an Odoo user with access to the companies and accounts you need."]</li><li>@T["Choose a permitted company, then load its bank accounts."]</li><li>@T["Preview posted entries for your selected accounts and period."]</li></ol><div class="context-note"><svg class="icon" aria-hidden="true"><use href="#i-shield" /></svg><h3>@T["Credentials stay private"]</h3><p>@T["Connection credentials and saved previews are encrypted and scoped to this Dike workspace."]</p></div><p>@T["These pages only read Odoo data."]</p></aside>
+</div>

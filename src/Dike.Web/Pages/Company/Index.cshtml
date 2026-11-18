@@ -1,0 +1,52 @@
+@page
+@model Dike.Web.Pages.Company.IndexModel
+@using Dike.Web.Authentication
+@{ ViewData["Title"] = "Overview"; var provider = Model.Company.ConnectionProvider; var connectionPage = ConnectionProviders.Page(provider); var saved = Model.OdooWorkspace; }
+<div class="page-heading">
+    <div><h1>@T["Workspace overview"]</h1><p>@T["Your accounts, source coverage and next steps."]</p></div>
+    <a class="button" asp-page="@connectionPage">@T["View connections"] <svg class="icon directional" aria-hidden="true"><use href="#i-arrow" /></svg></a>
+</div>
+@if (TempData["Notice"] is string notice) { <p role="status" class="notice">@T[notice]</p> }
+<div class="scope-strip" aria-label="@T["Workspace scope"]">
+    <span><svg class="icon" aria-hidden="true"><use href="#i-company" /></svg><bdi>@Model.Company.Name</bdi></span>
+    <span><svg class="icon" aria-hidden="true"><use href="#i-ledger" /></svg>@provider</span>
+    <span><bdi dir="ltr">@Model.Company.Currency</bdi> · <bdi>@(Model.Company.Country == "Saudi Arabia" ? T["Saudi Arabia"].Value : Model.Company.Country)</bdi></span>
+</div>
+<section class="panel" aria-labelledby="accounts-heading">
+    <div class="panel-heading"><div><h2 id="accounts-heading">@T["Accounts"]</h2><p>@T["Read-only accounting data, scoped to your company."]</p></div><span class="badge @(Model.ConnectionStatus == "Needs attention" ? "badge-pending" : "badge-neutral")">@T[Model.ConnectionStatus]</span></div>
+    @if (saved?.Accounts.Count > 0)
+    {
+        <div class="table-scroll" role="region" aria-label="@T["Account source coverage"]" tabindex="0">
+            <table class="account-worklist"><caption class="visually-hidden">@T["Loaded accounts and the evidence currently available."]</caption>
+                <thead><tr><th scope="col">@T["Account"]</th><th scope="col">@T["Accounting source"]</th><th scope="col">@T["Bank coverage"]</th><th scope="col">@T["Ledger coverage"]</th><th scope="col">@T["Period difference"]</th><th scope="col">@T["Next action"]</th></tr></thead>
+                <tbody>@foreach (var account in saved.Accounts)
+                {
+                    var sample = saved.Preview?.Samples.FirstOrDefault(item => item.AccountId == account.Id);
+                    var eligible = account.CurrencyId is null || account.CurrencyId == saved.SelectedCompany?.CurrencyId;
+                    <tr><th scope="row"><bdi>@account.Name</bdi><small><bdi dir="ltr">@account.Code · @account.Id</bdi></small></th><td>Odoo</td><td>@T["Not imported"]</td><td><span class="badge badge-neutral">@T[sample is null ? "Not previewed" : "Limited sample"]</span>@if (sample is not null) { <small><bdi dir="ltr">@sample.From.ToString("yyyy-MM-dd") — @sample.To.ToString("yyyy-MM-dd")</bdi></small> }</td><td class="muted">@T["Not available"]</td><td>@if (eligible) { <a class="button button-secondary button-small" asp-page="/Accounts/Odoo/Ledger">@T["GL preview"]</a> } else { <span class="muted">@T["Foreign-currency restriction"]</span> }</td></tr>
+                }</tbody>
+            </table>
+        </div>
+        <p class="table-note muted">@T["Preview totals are samples. Complete bank and ledger evidence is required to calculate a period difference."]</p>
+    }
+    else
+    {
+        <div class="empty-state"><div class="empty-icon" aria-hidden="true"><svg class="icon"><use href="#i-ledger" /></svg></div><h3>@T[provider == ConnectionProviders.Odoo ? "Load your permitted accounts" : "Review your accounting source"]</h3><p>@T[Model.ConnectionDetail, Model.ConnectionCount]</p><a class="button button-secondary" asp-page="@(provider == ConnectionProviders.Odoo ? "/Accounts/Odoo/Accounts" : connectionPage)">@T[provider == ConnectionProviders.Odoo ? "Companies and accounts" : "View accounts"]</a></div>
+    }
+</section>
+<div class="overview-columns">
+    <section class="panel" aria-labelledby="attention-heading"><div class="panel-heading"><h2 id="attention-heading">@T["Needs attention"]</h2></div>
+        <ul class="attention-list">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-alert" /></svg><div><strong>@T[Model.ConnectionStatus]</strong><p>@T[Model.ConnectionDetail, Model.ConnectionCount]</p></div></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-bank" /></svg><div><strong>@T["Bank activity"]</strong><p>@T["Bank imports are not yet enabled"]</p></div></li>
+            @if (saved?.Preview is not null) { <li><svg class="icon" aria-hidden="true"><use href="#i-alert" /></svg><div><strong>@T["Limited sample"]</strong><p>@T["Validate complete account activity against an independent GL report."]</p></div></li> }
+        </ul>
+    </section>
+    <section class="panel" aria-labelledby="readiness-heading"><div class="panel-heading"><h2 id="readiness-heading">@T["Source readiness"]</h2></div>
+        <dl class="source-facts"><div><dt>@T["Company profile"]</dt><dd><span class="badge">@T["Ready"]</span></dd></div><div><dt>@T["Accounting source"]</dt><dd>@provider</dd></div><div><dt>@T["Connection status"]</dt><dd>@T[Model.ConnectionStatus]</dd></div>
+        @if (saved?.AccountsFetchedAt is { } fetched) { <div><dt>@T["Accounts fetched"]</dt><dd><bdi dir="ltr">@fetched.ToOffset(TimeSpan.FromHours(3)).ToString("yyyy-MM-dd HH:mm")</bdi><small>@T["Riyadh time"]</small></dd></div> }
+        @if (saved?.Preview is { } preview) { <div><dt>@T["Latest saved preview"]</dt><dd><bdi dir="ltr">@preview.FetchedAt.ToOffset(TimeSpan.FromHours(3)).ToString("yyyy-MM-dd HH:mm")</bdi><small>@T["Riyadh time"]</small></dd></div> }
+        </dl>
+    </section>
+</div>
+<section class="workflow" aria-labelledby="workflow-heading"><h2 id="workflow-heading">@T["From source to sign-off"]</h2><div><ol><li><span>01</span>@T["Connect"]</li><li><span>02</span>@T["Compare"]</li><li><span>03</span>@T["Review"]</li><li><span>04</span>@T["Retain evidence"]</li></ol><p>@T["Comparison, review and evidence exports are planned."]</p></div></section>

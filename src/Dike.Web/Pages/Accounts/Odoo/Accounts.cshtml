@@ -1,0 +1,26 @@
+@page
+@model Dike.Web.Pages.Accounts.Odoo.AccountsModel
+@{ ViewData["Title"] = "Odoo companies and accounts"; }
+<div class="page-heading"><div><h1>@T["Choose your Odoo company."]</h1><p>@T["Load permitted bank accounts before selecting a GL period."]</p></div><a class="button button-secondary" asp-page="Connection">@T["Connection settings"]</a></div>
+<partial name="_OdooNav" />
+@if (TempData["Notice"] is string notice) { <p class="notice" role="status">@T[notice]</p> }
+<div asp-validation-summary="All" class="validation" role="alert"></div>
+@if (!Model.Workspace.Configured)
+{
+    <section class="panel empty-state"><h2>@T["Connect Odoo first"]</h2><p>@T["Verify your connection to load permitted companies."]</p><a class="button" asp-page="Connection">@T["Connect Odoo"]</a></section>
+}
+else
+{
+    <section class="auth-card odoo-company-picker"><form method="post"><label asp-for="CompanyId">@T["Odoo company"]</label><div class="odoo-inline-form"><select asp-for="CompanyId" required><option value="">@T["Select a company"]</option>@foreach (var company in Model.Workspace.Companies) { <option value="@company.Id">@company.Name (@company.CurrencyLabel)</option> }</select><button class="button" type="submit">@T["Load bank accounts"]</button></div></form>
+    @if (Model.Workspace.MoreCompanies) { <form method="post" asp-page-handler="MoreCompanies"><button class="button button-secondary" type="submit">@T["Load more companies"]</button></form> }
+    <p class="muted table-note">@T["Access follows your Odoo integration user's permissions."]</p></section>
+    <section class="panel collection-form"><div class="panel-heading"><div><h2>@T["Loaded bank accounts"]</h2><p><bdi>@Model.Workspace.SelectedCompany?.Name</bdi> · @T["{0} accounts loaded", Model.Workspace.Accounts.Count]</p></div>@if (Model.Workspace.Accounts.Count > 0) { <a class="button button-secondary" asp-page="Ledger">@T["Choose accounts and period"]</a> }</div>
+    @if (Model.Workspace.SelectedCompanyId is null) { <div class="empty-state"><p>@T["Select a company above to load its accounts."]</p></div> }
+    else if (Model.Workspace.Accounts.Count == 0) { <div class="empty-state"><p>@T["No permitted bank accounts were returned for this company."]</p></div> }
+    else
+    {
+        <div class="table-scroll" role="region" aria-label="@T["Loaded bank accounts"]" tabindex="0"><table class="odoo-accounts-table"><caption class="visually-hidden">@T["Bank accounts permitted to the connected Odoo user."]</caption><thead><tr><th scope="col">@T["Code"]</th><th scope="col">@T["Account"]</th><th scope="col">@T["Account ID"]</th><th scope="col">@T["Preview eligibility"]</th></tr></thead><tbody>@foreach (var account in Model.Workspace.Accounts) { var eligible = account.CurrencyId is null || account.CurrencyId == Model.Workspace.SelectedCompany?.CurrencyId; <tr><td><bdi dir="ltr">@account.Code</bdi></td><th scope="row"><bdi>@account.Name</bdi></th><td><bdi dir="ltr">@account.Id</bdi></td><td>@T[eligible ? "Eligible" : "Foreign-currency restriction"]</td></tr> }</tbody></table></div>
+    }
+    @if (Model.Workspace.MoreAccounts) { <form method="post" asp-page-handler="MoreAccounts" class="odoo-panel-action"><input type="hidden" name="CompanyId" value="@Model.Workspace.SelectedCompanyId" /><button class="button button-secondary" type="submit">@T["Load more accounts"]</button></form> }
+    </section>
+}

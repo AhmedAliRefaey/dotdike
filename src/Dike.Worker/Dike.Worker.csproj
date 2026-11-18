@@ -1,0 +1,4 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+  <PropertyGroup><OutputType>Exe</OutputType></PropertyGroup>
+  <ItemGroup><ProjectReference Include="../Dike.Infrastructure/Dike.Infrastructure.csproj" /><PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.14" /></ItemGroup>
+</Project>

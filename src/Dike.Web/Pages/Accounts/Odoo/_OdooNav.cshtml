@@ -1,0 +1,7 @@
+@{ var odooRoute = ViewContext.RouteData.Values["page"]?.ToString() ?? ""; }
+<nav class="connection-tabs" aria-label="@T["Odoo navigation"]">
+    <a asp-page="/Accounts/Odoo/Index" aria-current="@(odooRoute == "/Accounts/Odoo/Index" ? "page" : null)">@T["Odoo overview"]</a>
+    <a asp-page="/Accounts/Odoo/Connection" aria-current="@(odooRoute == "/Accounts/Odoo/Connection" ? "page" : null)">@T["Connection settings"]</a>
+    <a asp-page="/Accounts/Odoo/Accounts" aria-current="@(odooRoute == "/Accounts/Odoo/Accounts" ? "page" : null)">@T["Companies and accounts"]</a>
+    <a asp-page="/Accounts/Odoo/Ledger" aria-current="@(odooRoute == "/Accounts/Odoo/Ledger" ? "page" : null)">@T["GL preview"]</a>
+</nav>

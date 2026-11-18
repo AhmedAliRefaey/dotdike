@@ -1,0 +1,31 @@
+{
+  "Status": "CandidateUnverified",
+  "QueryVersion": "netsuite-posted-gl-candidate-v1",
+  "IdentityVersion": "transaction-line-book-account-candidate-v1",
+  "QuerySha256": "46C2F4A2B94DF3657E156682D0FE619C0E711F1789FF70D9B8C1777F689C6A9E",
+  "ScopeSql": "SELECT a.id, a.accttype, c.symbol AS accountcurrency, sc.symbol AS basecurrency, b.isprimary FROM account a JOIN currency c ON c.id = a.currency, subsidiary s JOIN currency sc ON sc.id = s.currency, accountingbook b WHERE a.id = ? AND s.id = ? AND b.id = ? AND a.isinactive = \u0027F\u0027",
+  "ScopeParameters": [
+    "account",
+    "subsidiary",
+    "book"
+  ],
+  "PostedGlSql": "SELECT t.id AS transactionid, al.transactionline AS lineid, al.accountingbook AS bookid, al.account AS accountid, l.subsidiary AS subsidiaryid, TO_CHAR(t.trandate, \u0027YYYY-MM-DD\u0027) AS postingdate, t.tranid AS reference, NVL(al.debit, 0) AS debit, NVL(al.credit, 0) AS credit FROM transaction t JOIN transactionline l ON l.transaction = t.id JOIN transactionaccountingline al ON al.transaction = l.transaction AND al.transactionline = l.id WHERE t.posting = \u0027T\u0027 AND al.posting = \u0027T\u0027 AND al.account = ? AND l.subsidiary = ? AND al.accountingbook = ? AND t.trandate \u003E= TO_DATE(?, \u0027YYYY-MM-DD\u0027) AND t.trandate \u003C TO_DATE(?, \u0027YYYY-MM-DD\u0027) \u002B 1 ORDER BY t.id, al.transactionline, al.accountingbook, al.account",
+  "PostedGlParameters": [
+    "account",
+    "subsidiary",
+    "book",
+    "from (inclusive)",
+    "to (inclusive)"
+  ],
+  "IdentityFields": [
+    "TransactionId",
+    "LineId",
+    "BookId",
+    "AccountId"
+  ],
+  "RequiredOuterScope": [
+    "CompanyId",
+    "ConnectionId",
+    "SubsidiaryId"
+  ]
+}

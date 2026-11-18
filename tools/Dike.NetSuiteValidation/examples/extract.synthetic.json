@@ -1,0 +1,22 @@
+{
+  "CompanyId": "synthetic-company",
+  "ConnectionId": "synthetic-connection",
+  "Complete": true,
+  "Data": {
+    "RunId": "synthetic-extract-only",
+    "FetchedAt": "2026-11-02T00:00:00+00:00",
+    "AccountId": "100",
+    "SubsidiaryId": "1",
+    "AccountingBookId": "1",
+    "Currency": "SAR",
+    "From": "2026-11-01",
+    "To": "2026-11-03",
+    "Lines": [
+      { "TransactionId": "10", "LineId": "1", "BookId": "1", "AccountId": "100", "SubsidiaryId": "1", "Date": "2026-11-01", "Reference": "SYNTHETIC-RECEIPT", "Debit": 125.50, "Credit": 0.00 },
+      { "TransactionId": "11", "LineId": "1", "BookId": "1", "AccountId": "100", "SubsidiaryId": "1", "Date": "2026-11-02", "Reference": "SYNTHETIC-PAYMENT", "Debit": 0.00, "Credit": 25.50 }
+    ],
+    "QueryVersion": "netsuite-posted-gl-candidate-v1",
+    "IdentityVersion": "transaction-line-book-account-candidate-v1",
+    "QuerySha256": "46C2F4A2B94DF3657E156682D0FE619C0E711F1789FF70D9B8C1777F689C6A9E"
+  }
+}

@@ -1,0 +1,31 @@
+@page
+@model Dike.Web.Pages.Accounts.NetSuiteModel
+@{ ViewData["Title"] = "NetSuite connection"; }
+<div class="page-heading"><div><h1>@T["Connect your accounting source."]</h1><p>@T["Read-only GL access, scoped to your company."]</p></div><a class="button button-secondary" asp-page="Index">@T["Back to accounts"]</a></div>
+@if (Model.Configured) { <p class="notice">@T["A connection is saved for {0}. Saving replaces its credentials and clears the current view; previous evidence is retained.", Model.AccountId ?? ""]</p> }
+<div class="form-layout">
+    <section class="auth-card" aria-labelledby="credentials-heading"><h2 id="credentials-heading">@T["Integration credentials"]</h2><p class="form-intro">@T["These are NetSuite integration credentials, not your Dike password."]</p>
+        <form method="post" autocomplete="off"><div asp-validation-summary="All" class="validation" role="alert"></div>
+            <label asp-for="Input.AccountId"></label><input asp-for="Input.AccountId" placeholder="1234567_SB1" dir="ltr" aria-describedby="account-help" />
+            <small id="account-help">@T["Use the account ID from NetSuite, not an application URL."]</small>
+            <label asp-for="Input.Mode">@T["Authentication method"]</label><select asp-for="Input.Mode" data-auth-method><option value="TBA">@T["Token-based authentication (HMAC-SHA256)"]</option><option value="M2M">@T["OAuth 2.0 certificate (RSA / PS256)"]</option></select>
+            <label asp-for="Input.ClientId"></label><input asp-for="Input.ClientId" dir="ltr" />
+            <fieldset data-auth-fields="TBA"><legend>@T["Token-based authentication"]</legend>
+                <label for="consumer-secret">@T["Consumer secret"]</label><input id="consumer-secret" name="Input.ClientSecret" type="password" autocomplete="new-password" dir="ltr" />
+                <label for="token-id">@T["Token ID"]</label><input id="token-id" name="Input.TokenId" type="password" autocomplete="new-password" dir="ltr" />
+                <label for="token-secret">@T["Token secret"]</label><input id="token-secret" name="Input.TokenSecret" type="password" autocomplete="new-password" dir="ltr" />
+            </fieldset>
+            <fieldset data-auth-fields="M2M"><legend>@T["OAuth 2.0 certificate"]</legend>
+                <label asp-for="Input.CertificateId">@T["Certificate ID"]</label><input asp-for="Input.CertificateId" dir="ltr" />
+                <label for="private-key">@T["RSA private key (PEM)"]</label><textarea id="private-key" name="Input.PrivateKeyPem" autocomplete="off" spellcheck="false" dir="ltr"></textarea>
+                <small>@T["Map the certificate to this integration and a permitted role in NetSuite. A client ID and secret alone do not enable this flow."]</small>
+            </fieldset>
+            <button class="button" type="submit">@T["Save company connection"]</button>
+        </form>
+    </section>
+    <aside><h2>@T["Before you connect"]</h2><ol class="steps"><li>@T["Enable REST Web Services and the selected authentication method."]</li><li>@T["Give the integration role only the accounting and subsidiary access it needs."]</li><li>@T["Save credentials, then load accessible GL accounts."]</li></ol>
+        <div class="context-note"><svg class="icon" aria-hidden="true"><use href="#i-shield" /></svg><h3>@T["Read-only by design"]</h3><p>@T["No journals or reconciliation updates are written to NetSuite."]</p></div>
+        <p>@T["Credentials are encrypted on this server. Use HTTPS outside local development."]</p>
+        <p>@T["Initial imports support SAR bank accounts, SAR subsidiaries and the primary accounting book. Validate fields and totals against your NetSuite GL report."]</p>
+    </aside>
+</div>

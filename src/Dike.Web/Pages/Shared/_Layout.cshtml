@@ -1,0 +1,81 @@
+@using Dike.Web.Authentication
+@inject CurrentCompany CurrentWorkspace
+@{
+    var signedIn = User.Identity?.IsAuthenticated == true;
+    var route = ViewContext.RouteData.Values["page"]?.ToString() ?? "";
+    var userName = User.Identity?.Name ?? "";
+    var arabic = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ar";
+    var workspace = signedIn ? await CurrentWorkspace.FindAsync(User) : null;
+    var provider = workspace?.ConnectionProvider;
+    var odoo = provider == ConnectionProviders.Odoo;
+    var accountsPage = odoo ? "/Accounts/Odoo/Accounts" : "/Accounts/Index";
+    var accountsActive = route == accountsPage || (odoo && route == "/Accounts/Odoo/Ledger");
+    var connectionActive = odoo ? route is "/Accounts/Odoo/Index" or "/Accounts/Odoo/Connection" : route == "/Accounts/NetSuite";
+}
+<!doctype html>
+<html lang="@(arabic ? "ar" : "en")" dir="@(arabic ? "rtl" : "ltr")">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#142b3d" />
+    <meta name="description" content="@T["Clarity for bank and accounting reconciliation, with independent review and evidence at its heart."]" />
+    <title>@T[ViewData["Title"]?.ToString() ?? "Dike"] · Dike</title>
+    <link rel="icon" href="~/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="~/dike.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/odoo.css" asp-append-version="true" />
+    <script src="~/dike.js" asp-append-version="true" defer></script>
+</head>
+<body class="@(signedIn ? "workspace" : "public-site")">
+<partial name="_Icons" />
+<a class="skip-link" href="#main">@T["Skip to content"]</a>
+@if (signedIn)
+{
+    <aside class="sidebar" data-nav-open="false">
+        <div class="sidebar-header">
+            <a class="brand" asp-page="/Company/Index" aria-label="@T["Dike overview"]" dir="ltr"><span class="brand-mark" aria-hidden="true">d.</span><span>dike</span></a>
+            <button class="nav-toggle" type="button" aria-controls="workspace-navigation" aria-expanded="false" hidden><svg class="icon" aria-hidden="true"><use href="#i-menu" /></svg><span>@T["Menu"]</span></button>
+        </div>
+        <div class="sidebar-body" id="workspace-navigation">
+            <nav aria-label="@T["Workspace navigation"]">
+                <a class="@(route == "/Company/Index" ? "active" : "")" aria-current="@(route == "/Company/Index" ? "page" : null)" asp-page="/Company/Index"><svg class="icon" aria-hidden="true"><use href="#i-overview" /></svg>@T["Overview"]</a>
+                @if (User.IsInRole("Administrator") && ConnectionProviders.IsSupported(provider))
+                {
+                    <a class="@(accountsActive ? "active" : "")" aria-current="@(accountsActive ? "page" : null)" asp-page="@accountsPage"><svg class="icon" aria-hidden="true"><use href="#i-ledger" /></svg>@T["Accounts"]</a>
+                    <a class="@(connectionActive ? "active" : "")" aria-current="@(connectionActive ? "page" : null)" asp-page="@(odoo ? "/Accounts/Odoo/Index" : "/Accounts/NetSuite")"><svg class="icon" aria-hidden="true"><use href="#i-link" /></svg>@T["Connections"]</a>
+                }
+            </nav>
+            <nav aria-label="@T["Company settings"]">
+                <a class="@(route == "/Company/Setup" ? "active" : "")" aria-current="@(route == "/Company/Setup" ? "page" : null)" asp-page="/Company/Setup"><svg class="icon" aria-hidden="true"><use href="#i-company" /></svg>@T["Company profile"]</a>
+                @if (User.IsInRole("Administrator"))
+                {
+                    <a class="@(route == "/Company/Staff" ? "active" : "")" aria-current="@(route == "/Company/Staff" ? "page" : null)" asp-page="/Company/Staff"><svg class="icon" aria-hidden="true"><use href="#i-people" /></svg>@T["Team & access"]</a>
+                }
+                <a class="@(route == "/Auth/ChangePassword" ? "active" : "")" aria-current="@(route == "/Auth/ChangePassword" ? "page" : null)" asp-page="/Auth/ChangePassword"><svg class="icon" aria-hidden="true"><use href="#i-shield" /></svg>@T["Account security"]</a>
+            </nav>
+            <div class="sidebar-bottom">
+                <p>@T["Clarity. Balance. Evidence."]</p>
+                <form method="post" asp-page="/Auth/Logout"><button class="signout" type="submit"><svg class="icon directional" aria-hidden="true"><use href="#i-logout" /></svg>@T["Sign out"]</button></form>
+            </div>
+        </div>
+    </aside>
+    <div class="app-frame">
+        <header class="topbar">
+            <div class="workspace-context"><bdi class="workspace-name">@(workspace?.Name ?? T["Workspace"].Value)</bdi><p class="breadcrumb">@T[ViewData["Title"]?.ToString() ?? "Overview"]</p></div>
+            <div class="topbar-actions"><partial name="_Language" /><div class="user-chip"><span class="avatar" aria-hidden="true">@(userName.Length > 0 ? userName[..1].ToUpperInvariant() : "U")</span><bdi class="user-email" dir="ltr" title="@userName">@userName</bdi></div></div>
+        </header>
+        <main id="main" tabindex="-1">@RenderBody()</main>
+        <footer class="app-footer">@T[provider == ConnectionProviders.Odoo ? "Independent review. This preview does not change Odoo accounting records." : provider == ConnectionProviders.NetSuite ? "Independent review. Dike decisions do not change NetSuite reconciliation status." : "Independent judgement. Traceable evidence."]</footer>
+    </div>
+}
+else
+{
+    <header class="public-header">
+        <a class="brand" asp-page="/Index" aria-label="@T["Dike home"]" dir="ltr"><span class="brand-mark" aria-hidden="true">d.</span><span>dike</span></a>
+        <span class="header-purpose">@T["Clarity. Balance. Evidence."]</span>
+        <nav aria-label="@T["Main navigation"]"><partial name="_Language" /><a asp-page="/Auth/Login">@T["Sign in"]</a><a class="button button-small" asp-page="/Auth/Register">@T["Create workspace"] <svg class="icon directional" aria-hidden="true"><use href="#i-arrow" /></svg></a></nav>
+    </header>
+    <main id="main" tabindex="-1">@RenderBody()</main>
+    <footer class="public-footer"><a class="footer-brand" asp-page="/Index" dir="ltr">dike</a><span>@T["A clearer view of bank and book."]</span><span>@T["Independent judgement. Traceable evidence."]</span></footer>
+}
+</body>
+</html>

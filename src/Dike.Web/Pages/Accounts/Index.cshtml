@@ -1,0 +1,46 @@
+@page
+@model Dike.Web.Pages.Accounts.IndexModel
+@{ ViewData["Title"] = "Connections"; }
+<div class="page-heading"><div><h1>@T["Your NetSuite GL accounts."]</h1><p>@T["Read-only accounting data, scoped to your company."]</p></div><a class="button button-secondary" asp-page="NetSuite">@T[Model.State is null ? "Configure NetSuite" : "Update connection"] <svg class="icon directional" aria-hidden="true"><use href="#i-arrow" /></svg></a></div>
+@if (TempData["Notice"] is string notice) { <p class="notice" role="status">@T[notice]</p> }
+<div asp-validation-summary="All" class="validation" role="alert"></div>
+@if (Model.State is not null)
+{
+    <section class="setup-banner"><div><h2>NetSuite <bdi dir="ltr">@Model.State.Connection.AccountId</bdi></h2><p>@T["Last complete account load"]: <bdi>@(Model.State.AccountsFetchedAt?.ToString("u") ?? T["Never"].Value)</bdi></p></div><form method="post" asp-page-handler="LoadAccounts"><button class="button" type="submit">@T["Load / refresh GL accounts"]</button></form></section>
+    @if (Model.State.LastError is not null) { <p class="validation" role="status">@T["Last attempt"]: <bdi>@UiMessages.Localize(T, Model.State.LastError)</bdi></p> }
+}
+<section class="panel" aria-labelledby="accounts-heading">
+    <div class="panel-heading"><div><h2 id="accounts-heading">@T["Chart of accounts"]</h2><p>@T["{0} accessible active accounts. Movement import scope: SAR bank accounts.", Model.Accounts.Count]</p></div><span class="badge badge-neutral">@T[Model.State?.AccountsFetchedAt is null ? "Not loaded" : "Snapshot"]</span></div>
+    @if (Model.SetupMessage is not null)
+    {
+        <div class="empty-state"><div class="empty-icon" aria-hidden="true"><svg class="icon"><use href="#i-ledger" /></svg></div><h3>@T["No accounts imported yet"]</h3><p role="status">@T[Model.SetupMessage]</p><a class="button button-secondary" asp-page="@(Model.State is null ? "NetSuite" : "/Company/Index")">@T[Model.State is null ? "Configure NetSuite" : "Back to overview"]</a></div>
+    }
+    else if (Model.Accounts.Count == 0) { <div class="empty-state"><p>@T["No accessible accounts were returned."]</p></div> }
+    else
+    {
+        <div class="table-scroll" role="region" aria-label="@T["Chart of accounts"]" tabindex="0"><table><caption class="visually-hidden">@T["Accessible NetSuite accounts and their import eligibility."]</caption><thead><tr><th scope="col">@T["Account"]</th><th scope="col">@T["Subsidiary"]</th><th scope="col">@T["Currency"]</th><th scope="col">@T["Pilot eligibility"]</th></tr></thead><tbody>
+        @foreach (var account in Model.Accounts) { <tr><th scope="row"><bdi>@account.Name</bdi></th><td><bdi>@account.Subsidiary</bdi></td><td><bdi dir="ltr">@account.Currency</bdi></td><td>@T[account.IsBank && account.Currency == "SAR" ? "Eligible — mapping pending" : "Not eligible"]</td></tr> }
+        </tbody></table></div>
+    }
+</section>
+@if (Model.Accounts.Any(x => x.IsBank && x.Currency == "SAR"))
+{
+    <section class="auth-card collection-form" aria-labelledby="collect-heading"><h2 id="collect-heading">@T["Collect posted GL movements"]</h2>
+        <form method="post" asp-page-handler="Import">
+            <label asp-for="Period.Account">@T["Bank GL account"]</label><select asp-for="Period.Account"><option value="">@T["Select an account"]</option>@foreach(var account in Model.Accounts.Where(x=>x.IsBank && x.Currency == "SAR")) { <option value="@account.Id">@account.Name (@account.Id)</option> }</select>
+            <div class="form-row"><div><label asp-for="Period.Subsidiary">@T["Subsidiary internal ID (SAR base currency)"]</label><input asp-for="Period.Subsidiary" inputmode="numeric" dir="ltr" /></div><div><label asp-for="Period.Book">@T["Primary accounting book internal ID"]</label><input asp-for="Period.Book" inputmode="numeric" dir="ltr" /></div></div>
+            <div class="form-row"><div><label asp-for="Period.From">@T["From"]</label><input asp-for="Period.From" dir="ltr" /></div><div><label asp-for="Period.To">@T["To"]</label><input asp-for="Period.To" dir="ltr" /></div></div>
+            <button class="button" type="submit">@T["Collect GL movements"]</button><small>@T["All pages must complete before publication. This does not post accounting entries or approve reconciliation."]</small>
+        </form>
+    </section>
+}
+@if (Model.State?.LatestExtract is { } extract)
+{
+    <section class="panel collection-form" aria-labelledby="extract-heading">
+        <div class="panel-heading"><div><h2 id="extract-heading">@T["Latest completed GL extract"]</h2><p>@T["Account"] <bdi>@extract.AccountId</bdi> · @T["Subsidiary"] <bdi>@extract.SubsidiaryId</bdi> · @T["Book"] <bdi>@extract.AccountingBookId</bdi> · <bdi dir="ltr">@extract.From — @extract.To</bdi></p><p>@T["Fetched"] <bdi dir="ltr">@extract.FetchedAt.ToString("u")</bdi> · @T["Run"] <bdi dir="ltr">@extract.RunId</bdi></p></div><span class="badge badge-pending">@T["GL report validation required"]</span></div>
+        <div class="metrics"><div class="metric"><small>@T["Rows"]</small><strong><bdi dir="ltr">@extract.Lines.Count</bdi></strong></div><div class="metric"><small>@T["Debit − credit / SAR"]</small><strong><bdi dir="ltr">@extract.Lines.Sum(x=>x.SignedAmount).ToString("N2")</bdi></strong></div><div class="metric"><small>@T["Debit / Credit"]</small><strong class="paired-total"><bdi dir="ltr">@extract.Lines.Sum(x=>x.Debit).ToString("N2") / @extract.Lines.Sum(x=>x.Credit).ToString("N2")</bdi></strong></div></div>
+        <div class="table-scroll" role="region" aria-label="@T["Latest completed GL extract"]" tabindex="0"><table class="extract-table"><caption class="visually-hidden">@T["Posted movements in the latest saved extract."]</caption><thead><tr><th scope="col">@T["Date"]</th><th scope="col">@T["Transaction / line"]</th><th scope="col">@T["Reference"]</th><th scope="col" class="numeric">@T["Debit"]</th><th scope="col" class="numeric">@T["Credit"]</th><th scope="col" class="numeric">@T["Signed SAR"]</th></tr></thead><tbody>
+        @foreach(var line in extract.Lines.Take(500)) { <tr><td><bdi dir="ltr">@line.Date</bdi></td><td><bdi dir="ltr">@line.TransactionId / @line.LineId</bdi></td><td><bdi>@line.Reference</bdi></td><td class="numeric"><bdi dir="ltr">@line.Debit.ToString("N2")</bdi></td><td class="numeric"><bdi dir="ltr">@line.Credit.ToString("N2")</bdi></td><td class="numeric"><bdi dir="ltr">@line.SignedAmount.ToString("N2")</bdi></td></tr> }
+        </tbody></table></div><p class="muted table-note">@T["Showing the first 500 rows. Totals include every row in the saved extract. Source as-of time is not supplied by this API."]</p>
+    </section>
+}

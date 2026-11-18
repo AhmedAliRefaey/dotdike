@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <UserSecretsId>Dike-Web-6bfeaa90-471d-4e89-bc45-784c545b4c8d</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="Dike.Tests" />
+    <ProjectReference Include="../Dike.Infrastructure/Dike.Infrastructure.csproj" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="10.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.14" />
+  </ItemGroup>
+</Project>

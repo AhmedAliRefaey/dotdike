@@ -1,0 +1,52 @@
+@page
+@model Dike.Web.Pages.Accounts.Odoo.LedgerModel
+@using System.Globalization
+@{ ViewData["Title"] = "Odoo GL preview"; }
+<div class="page-heading"><div><h1>@T["Preview a posted GL period."]</h1><p>@T["Choose accounts and dates, then review the returned entries."]</p></div><a class="button button-secondary" asp-page="Accounts">@T["Companies and accounts"]</a></div>
+<partial name="_OdooNav" />
+@if (TempData["Notice"] is string notice) { <p class="notice" role="status">@T[notice]</p> }
+<div asp-validation-summary="All" class="validation" role="alert"></div>
+@if (Model.Workspace.Accounts.Count == 0)
+{
+    <section class="panel empty-state"><h2>@T["Load accounts first"]</h2><p>@T["Choose a permitted company and load its bank accounts before fetching entries."]</p><a class="button" asp-page="Accounts">@T["Load bank accounts"]</a></section>
+}
+else
+{
+    <section class="auth-card"><h2><bdi>@Model.Workspace.SelectedCompany?.Name</bdi></h2><p class="form-intro">@T["Select up to five accounts. Each preview covers at most 31 days and 50 rows per account."]</p>
+        <form method="post" data-odoo-period-form>
+            <input type="hidden" asp-for="Filter.CatalogVersion" />
+            <fieldset class="odoo-account-choices"><legend>@T["Accounts to preview"]</legend>
+            @foreach (var account in Model.Workspace.Accounts)
+            {
+                var disabled = account.CurrencyId is not null && account.CurrencyId != Model.Workspace.SelectedCompany?.CurrencyId;
+                <label class="odoo-account-choice"><input type="checkbox" name="Filter.AccountIds" value="@account.Id" checked="@(Model.Filter.AccountIds.Contains(account.Id))" disabled="@disabled" /><span><strong><bdi>@account.Name</bdi></strong><small><bdi dir="ltr">@account.Code · @account.Id</bdi>@if (disabled) { <span> · @T["Foreign-currency restriction"]</span> }</small></span></label>
+            }
+            </fieldset>
+            <div class="odoo-filter-fields"><div class="form-row"><div><label asp-for="Filter.Mode">@T["Period"]</label><select asp-for="Filter.Mode" data-odoo-period-mode><option value="week">@T["Weekly"]</option><option value="month">@T["Monthly"]</option><option value="range">@T["Custom dates"]</option></select></div><div><label asp-for="Filter.Limit">@T["Rows per account"]</label><input asp-for="Filter.Limit" type="number" min="1" max="50" dir="ltr" /></div></div><div>
+            <div data-odoo-period-fields="week"><label asp-for="Filter.WeekStart">@T["Week starting"]</label><input asp-for="Filter.WeekStart" type="date" dir="ltr" /><small>@T["Includes the selected start date and the next six days."]</small></div>
+            <div data-odoo-period-fields="month"><label asp-for="Filter.Month">@T["Calendar month"]</label><input asp-for="Filter.Month" type="month" dir="ltr" /></div>
+            <div class="form-row" data-odoo-period-fields="range"><div><label asp-for="Filter.From">@T["From"]</label><input asp-for="Filter.From" type="date" dir="ltr" /></div><div><label asp-for="Filter.To">@T["To"]</label><input asp-for="Filter.To" type="date" dir="ltr" /></div></div>
+            </div></div>
+            <button class="button" type="submit">@T["Fetch posted GL"]</button>
+            <small>@T["Dates are inclusive. Only posted entries for your selected accounts are requested."]</small>
+        </form>
+    </section>
+}
+@if (Model.Workspace.Preview is { } preview)
+{
+    <section class="odoo-preview-header collection-form"><div><h2>@T["Latest saved preview"]</h2><p>@T["Fetched"] <bdi dir="ltr">@preview.FetchedAt.ToOffset(TimeSpan.FromHours(3)).ToString("yyyy-MM-dd HH:mm", CultureInfo.InvariantCulture)</bdi> · @T["Riyadh time"] · <bdi>@preview.CompanyName</bdi></p></div><span class="badge badge-pending">@T["Limited sample"]</span></section>
+    <p class="context-note">@T["Preview totals cover only the rows shown. Validate complete account activity against an independent GL report."]</p>
+    @foreach (var sample in preview.Samples)
+    {
+        var account = preview.Accounts.Single(item => item.Id == sample.AccountId);
+        <section class="panel collection-form" data-odoo-sample="@sample.AccountId"><div class="panel-heading"><div><h3><bdi>@account.Name</bdi></h3><p><bdi dir="ltr">@account.Code · @sample.From.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture) — @sample.To.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)</bdi></p></div><span class="badge @(sample.HasMore ? "badge-pending" : "badge-neutral")">@T[sample.HasMore ? "More rows available" : "Preview returned"]</span></div>
+        <div class="metrics sample-metrics"><div class="metric"><small>@T["Rows"]</small><strong>@sample.Rows.Count</strong></div><div class="metric"><small>@T["Sample debit / SAR"]</small><strong><bdi dir="ltr">@sample.Rows.Sum(row => row.Debit).ToString("N2", CultureInfo.InvariantCulture)</bdi></strong></div><div class="metric"><small>@T["Sample credit / SAR"]</small><strong><bdi dir="ltr">@sample.Rows.Sum(row => row.Credit).ToString("N2", CultureInfo.InvariantCulture)</bdi></strong></div><div class="metric"><small>@T["Sample movement / SAR"]</small><strong><bdi dir="ltr">@sample.Rows.Sum(row => row.Balance).ToString("+#,##0.00;-#,##0.00;0.00", CultureInfo.InvariantCulture)</bdi></strong></div></div>
+        @if (sample.Rows.Count == 0) { <div class="empty-state"><p>@T["Limited sample returned 0 rows for this account and period."]</p></div> }
+        else
+        {
+            <div class="table-scroll" role="region" aria-label="@T["Posted GL preview"]" tabindex="0"><table class="extract-table"><caption class="visually-hidden">@T["Posted entries returned for this account and period."]</caption><thead><tr><th scope="col">@T["Date"]</th><th scope="col">@T["Entry / item"]</th><th scope="col">@T["Journal"]</th><th scope="col" class="numeric">@T["Debit"]</th><th scope="col" class="numeric">@T["Credit"]</th><th scope="col" class="numeric">@T["Signed SAR"]</th></tr></thead><tbody>@foreach (var row in sample.Rows) { <tr><td><bdi dir="ltr">@row.Date.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)</bdi></td><td><bdi dir="ltr">@row.MoveId / @row.Id</bdi></td><td><bdi dir="ltr">@row.JournalId</bdi></td><td class="numeric"><bdi dir="ltr">@row.Debit.ToString("N2", CultureInfo.InvariantCulture)</bdi></td><td class="numeric"><bdi dir="ltr">@row.Credit.ToString("N2", CultureInfo.InvariantCulture)</bdi></td><td class="numeric"><bdi dir="ltr">@row.Balance.ToString("N2", CultureInfo.InvariantCulture)</bdi></td></tr> }</tbody></table></div>
+        }
+        @if (sample.HasMore) { <p class="odoo-panel-action muted">@T["The row limit was reached. Narrow the period or increase the limit to inspect more entries."]</p> }
+        </section>
+    }
+}

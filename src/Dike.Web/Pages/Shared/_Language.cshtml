@@ -1,0 +1,8 @@
+@{
+    var arabic = System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName == "ar";
+}
+<form method="post" asp-page="/Language" class="language-switch">
+    <input type="hidden" name="culture" value="@(arabic ? "en" : "ar")" />
+    <input type="hidden" name="returnUrl" value="@(Context.Request.PathBase + Context.Request.Path + Context.Request.QueryString)" />
+    <button type="submit" lang="@(arabic ? "en" : "ar")" dir="@(arabic ? "ltr" : "rtl")" aria-label="@(arabic ? "Switch to English" : "التبديل إلى العربية")">@(arabic ? "English" : "العربية")</button>
+</form>

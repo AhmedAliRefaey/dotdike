@@ -1,0 +1,55 @@
+@layer pages {
+    .connection-tabs { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 24px; border-bottom: 1px solid var(--line); }
+    .connection-tabs a { padding: 12px 16px; border-bottom: 2px solid transparent; color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 600; }
+    .connection-tabs a:hover { color: var(--teal); background: #edf7f5; }
+    .connection-tabs a[aria-current=page] { color: var(--teal-hover); border-color: var(--teal); }
+    .connection-journey { list-style: none; padding: 0; margin: 0; background: white; border: 1px solid var(--line); border-radius: var(--radius); }
+    .connection-journey li { display: grid; grid-template-columns: 36px minmax(0,1fr) auto; align-items: center; gap: 20px; padding: 24px; }
+    .connection-journey li+li { border-top: 1px solid var(--line); }
+    .journey-number { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid var(--line); border-radius: 8px; color: var(--teal); font-size: 13px; font-weight: 600; }
+    .connection-journey h2 { font-size: 17px; }
+    .connection-journey p { color: var(--muted); font-size: 13px; margin-top: 6px; }
+    .odoo-company-picker label { margin-top: 0; }
+    .odoo-inline-form { display: flex; align-items: center; gap: 16px; }
+    .odoo-inline-form select { flex: 1; min-width: 0; }
+    .auth-card .odoo-inline-form .button { flex-shrink: 0; margin: 0; }
+    .odoo-local-connection { padding: 16px; background: #f1f7fa; border: 1px solid var(--line); border-radius: 6px; margin-bottom: 20px; }
+    .odoo-local-connection p { font-size: 13px; }
+    .odoo-local-connection .button { margin-top: 16px; }
+    .odoo-panel-action { padding: 16px 20px; }
+    .odoo-accounts-table { min-width: 640px; }
+    .odoo-accounts-table th[scope=row] { min-width: 240px; }
+    .auth-card .odoo-account-choices { border: 0; padding: 0; margin: 0 0 16px; min-width: 0; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+    .odoo-account-choices legend { font-size: 13px; font-weight: 600; margin-bottom: 12px; padding: 0; color: var(--ink); }
+    .auth-card label.odoo-account-choice { display: flex; align-items: flex-start; gap: 12px; border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; margin: 0; cursor: pointer; font-weight: 400; }
+    .odoo-account-choice:has(input:checked) { background: #edf7f5; border-color: var(--teal); }
+    .odoo-account-choice:has(input:disabled) { color: var(--muted); background: #f4f6f8; cursor: default; }
+    .odoo-account-choice input { width: 18px; height: 18px; min-width: 18px; margin-top: 2px; }
+    .odoo-account-choice small { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; }
+    .odoo-account-choice strong { overflow-wrap: anywhere; }
+    .odoo-filter-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding-top: 4px; border-top: 1px solid var(--line); }
+    .odoo-filter-fields .form-row { align-items: start; }
+    .odoo-preview-header { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .odoo-preview-header p { color: var(--muted); font-size: 12px; margin-top: 6px; }
+    .odoo-preview-header + .context-note { margin-top: 16px; padding: 12px 16px; background: #edf4fa; border: 1px solid #cfdeea; border-radius: 6px; color: #334f65; }
+    .sample-metrics { grid-template-columns: repeat(4,minmax(0,1fr)); }
+    [data-odoo-period-fields][hidden] { display: none; }
+}
+@layer responsive {
+    @media (max-width: 1100px) {
+        .odoo-filter-fields { grid-template-columns: 1fr; gap: 0; }
+        .sample-metrics { grid-template-columns: repeat(2,minmax(0,1fr)); }
+        .sample-metrics .metric:nth-child(3) { border-inline-start: 0; padding-inline-start: 0; }
+    }
+    @media (max-width: 760px) {
+        .connection-tabs a { padding: 10px 12px; font-size: 13px; }
+        .connection-journey li { padding: 20px 16px; gap: 12px; grid-template-columns: 32px minmax(0,1fr); }
+        .connection-journey .button { grid-column: 2; justify-self: start; }
+        .journey-number { width: 32px; height: 32px; }
+        .auth-card .odoo-account-choices { grid-template-columns: 1fr; }
+        .odoo-inline-form { flex-direction: column; align-items: stretch; }
+        .odoo-preview-header { align-items: flex-start; flex-direction: column; gap: 12px; }
+        .odoo-panel-action { padding: 16px; }
+    }
+    @media (max-width: 450px) { .sample-metrics { grid-template-columns: 1fr; } }
+}

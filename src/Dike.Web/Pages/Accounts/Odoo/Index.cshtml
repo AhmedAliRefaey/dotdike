@@ -1,0 +1,18 @@
+@page
+@model Dike.Web.Pages.Accounts.Odoo.IndexModel
+@{ ViewData["Title"] = "Odoo overview"; }
+<div class="page-heading"><div><h1>@T["Your Odoo accounting workspace."]</h1><p>@T["Connect, choose your accounts, and preview a posted period."]</p></div><a class="button button-secondary" asp-page="/Company/Index">@T["Back to overview"]</a></div>
+<partial name="_OdooNav" />
+<div asp-validation-summary="All" class="validation" role="alert"></div>
+@if (TempData["Notice"] is string notice) { <p class="notice" role="status">@T[notice]</p> }
+@if (Model.Workspace.NeedsReconnect) { <p class="notice" role="status">@T["Verify the connection again for the configured Odoo server."]</p> }
+<section class="setup-banner"><div><h2>Odoo <bdi dir="ltr">@Model.Workspace.BaseUrl</bdi></h2><p>@T["Connection for"] <bdi>@Model.Workspace.DikeCompanyName</bdi></p></div><span class="badge @(Model.Workspace.Configured ? "" : "badge-neutral")">@T[Model.Workspace.Configured ? "Connected" : "Not configured"]</span></section>
+<ol class="connection-journey">
+    <li><span class="journey-number">01</span><div><h2>@T["Connection settings"]</h2><p>@T["Verify access and keep credentials private to your Dike workspace."]</p></div><a class="button button-secondary" asp-page="Connection">@T[Model.Workspace.Configured ? "Update connection" : "Connect Odoo"]</a></li>
+    <li><span class="journey-number">02</span><div><h2>@T["Companies and accounts"]</h2><p>@T["Load the companies and bank accounts permitted to your Odoo user."]</p></div><a class="button button-secondary" asp-page="Accounts">@T["Choose a company"]</a></li>
+    <li><span class="journey-number">03</span><div><h2>@T["GL preview"]</h2><p>@T["Select accounts and a weekly, monthly, or custom period."]</p></div><a class="button" asp-page="Ledger">@T["Preview posted GL"]</a></li>
+</ol>
+@if (Model.Workspace.Preview is { } preview)
+{
+    <section class="panel collection-form"><div class="panel-heading"><div><h2>@T["Latest saved preview"]</h2><p><bdi>@preview.CompanyName</bdi> · @T["{0} selected accounts", preview.Samples.Count]</p></div><a asp-page="Ledger">@T["View preview"]</a></div><div class="metrics"><div class="metric"><small>@T["Rows"]</small><strong>@preview.Samples.Sum(sample => sample.Rows.Count)</strong></div><div class="metric"><small>@T["Preview status"]</small><strong class="paired-total">@T["Limited sample"]</strong></div></div></section>
+}

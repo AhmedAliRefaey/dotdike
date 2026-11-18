@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms</value></resheader>
+  <data name="Clarity for bank and NetSuite reconciliation, with independent review and evidence at its heart." xml:space="preserve"><value>Clarity for bank and NetSuite reconciliation, with independent review and evidence at its heart.</value></data>
+  <data name="Skip to content" xml:space="preserve"><value>Skip to content</value></data>
+  <data name="Dike overview" xml:space="preserve"><value>Dike overview</value></data>
+  <data name="Dike home" xml:space="preserve"><value>Dike home</value></data>
+  <data name="Reconciliation workspace" xml:space="preserve"><value>Reconciliation workspace</value></data>
+  <data name="Menu" xml:space="preserve"><value>Menu</value></data>
+  <data name="Workspace" xml:space="preserve"><value>Workspace</value></data>
+  <data name="Workspace navigation" xml:space="preserve"><value>Workspace navigation</value></data>
+  <data name="Overview" xml:space="preserve"><value>Overview</value></data>
+  <data name="Connections" xml:space="preserve"><value>Connections</value></data>
+  <data name="Company" xml:space="preserve"><value>Company</value></data>
+  <data name="Company settings" xml:space="preserve"><value>Company settings</value></data>
+  <data name="Company profile" xml:space="preserve"><value>Company profile</value></data>
+  <data name="Staff" xml:space="preserve"><value>Staff</value></data>
+  <data name="Account security" xml:space="preserve"><value>Account security</value></data>
+  <data name="Initial release" xml:space="preserve"><value>Initial release</value></data>
+  <data name="Clarity. Balance. Evidence." xml:space="preserve"><value>Clarity. Balance. Evidence.</value></data>
+  <data name="Sign out" xml:space="preserve"><value>Sign out</value></data>
+  <data name="Independent review. Dike decisions do not change NetSuite reconciliation status." xml:space="preserve"><value>Independent review. Dike decisions do not change NetSuite reconciliation status.</value></data>
+  <data name="Main navigation" xml:space="preserve"><value>Main navigation</value></data>
+  <data name="Sign in" xml:space="preserve"><value>Sign in</value></data>
+  <data name="Create workspace" xml:space="preserve"><value>Create workspace</value></data>
+  <data name="A clearer view of bank and book." xml:space="preserve"><value>A clearer view of bank and book.</value></data>
+  <data name="Independent judgement. Traceable evidence." xml:space="preserve"><value>Independent judgement. Traceable evidence.</value></data>
+  <data name="A clearer financial close" xml:space="preserve"><value>A clearer financial close</value></data>
+  <data name="A fair view." xml:space="preserve"><value>A fair view.</value></data>
+  <data name="A clearer close." xml:space="preserve"><value>A clearer close.</value></data>
+  <data name="Bring bank activity and your NetSuite ledger into a clearer close. Start with company setup and read-only GL collection." xml:space="preserve"><value>Bring bank activity and your NetSuite ledger into a clearer close. Start with company setup and read-only GL collection.</value></data>
+  <data name="Open your workspace" xml:space="preserve"><value>Open your workspace</value></data>
+  <data name="Create your workspace" xml:space="preserve"><value>Create your workspace</value></data>
+  <data name="Your company. Your evidence. Your judgement." xml:space="preserve"><value>Your company. Your evidence. Your judgement.</value></data>
+  <data name="A level brass beam resting on two limestone blocks, a study in balance." xml:space="preserve"><value>A level brass beam resting on two limestone blocks, a study in balance.</value></data>
+  <data name="Two sources. Human judgement." xml:space="preserve"><value>Two sources. Human judgement.</value></data>
+  <data name="The Dike approach" xml:space="preserve"><value>The Dike approach</value></data>
+  <data name="Establish the facts" xml:space="preserve"><value>Establish the facts</value></data>
+  <data name="Collect posted NetSuite movements within a clear company and period scope." xml:space="preserve"><value>Collect posted NetSuite movements within a clear company and period scope.</value></data>
+  <data name="Examine the differences" xml:space="preserve"><value>Examine the differences</value></data>
+  <data name="Bank comparison and explainable proposals are the next step." xml:space="preserve"><value>Bank comparison and explainable proposals are the next step.</value></data>
+  <data name="Keep the reasoning" xml:space="preserve"><value>Keep the reasoning</value></data>
+  <data name="Independent review and evidence workpapers are planned." xml:space="preserve"><value>Independent review and evidence workpapers are planned.</value></data>
+  <data name="Available now: company setup, staff directory and NetSuite GL collection." xml:space="preserve"><value>Available now: company setup, staff directory and NetSuite GL collection.</value></data>
+  <data name="Bank imports, comparison, review and exports are not yet enabled." xml:space="preserve"><value>Bank imports, comparison, review and exports are not yet enabled.</value></data>
+  <data name="Your close, in clear view." xml:space="preserve"><value>Your close, in clear view.</value></data>
+  <data name="Saudi Arabia" xml:space="preserve"><value>Saudi Arabia</value></data>
+  <data name="Begin with the evidence." xml:space="preserve"><value>Begin with the evidence.</value></data>
+  <data name="Connect NetSuite, collect a posted period, and validate it against your GL report." xml:space="preserve"><value>Connect NetSuite, collect a posted period, and validate it against your GL report.</value></data>
+  <data name="View connections" xml:space="preserve"><value>View connections</value></data>
+  <data name="Accounting source" xml:space="preserve"><value>Accounting source</value></data>
+  <data name="Bank" xml:space="preserve"><value>Bank</value></data>
+  <data name="Statement activity" xml:space="preserve"><value>Statement activity</value></data>
+  <data name="Workspace readiness" xml:space="preserve"><value>Workspace readiness</value></data>
+  <data name="Current release" xml:space="preserve"><value>Current release</value></data>
+  <data name="Administrator account and company details" xml:space="preserve"><value>Administrator account and company details</value></data>
+  <data name="Ready" xml:space="preserve"><value>Ready</value></data>
+  <data name="No NetSuite data imported" xml:space="preserve"><value>No NetSuite data imported</value></data>
+  <data name="Not configured" xml:space="preserve"><value>Not configured</value></data>
+  <data name="Not tested" xml:space="preserve"><value>Not tested</value></data>
+  <data name="Accounts loaded" xml:space="preserve"><value>Accounts loaded</value></data>
+  <data name="Needs attention" xml:space="preserve"><value>Needs attention</value></data>
+  <data name="{0} rows in latest GL extract" xml:space="preserve"><value>{0} rows in latest GL extract</value></data>
+  <data name="{0} accounts in saved snapshot" xml:space="preserve"><value>{0} accounts in saved snapshot</value></data>
+  <data name="Bank activity" xml:space="preserve"><value>Bank activity</value></data>
+  <data name="Bank imports are not yet enabled" xml:space="preserve"><value>Bank imports are not yet enabled</value></data>
+  <data name="Coming next" xml:space="preserve"><value>Coming next</value></data>
+  <data name="From source to sign-off" xml:space="preserve"><value>From source to sign-off</value></data>
+  <data name="Connect" xml:space="preserve"><value>Connect</value></data>
+  <data name="Compare" xml:space="preserve"><value>Compare</value></data>
+  <data name="Review" xml:space="preserve"><value>Review</value></data>
+  <data name="Retain evidence" xml:space="preserve"><value>Retain evidence</value></data>
+  <data name="Comparison, review and evidence exports are planned." xml:space="preserve"><value>Comparison, review and evidence exports are planned.</value></data>
+  <data name="Company sign-in" xml:space="preserve"><value>Company sign-in</value></data>
+  <data name="Sign in to your workspace." xml:space="preserve"><value>Sign in to your workspace.</value></data>
+  <data name="Use the email and password you registered with Dike." xml:space="preserve"><value>Use the email and password you registered with Dike.</value></data>
+  <data name="New to Dike?" xml:space="preserve"><value>New to Dike?</value></data>
+  <data name="Register your company" xml:space="preserve"><value>Register your company</value></data>
+  <data name="Your Dike password is separate from NetSuite and bank credentials." xml:space="preserve"><value>Your Dike password is separate from NetSuite and bank credentials.</value></data>
+  <data name="Your company." xml:space="preserve"><value>Your company.</value></data>
+  <data name="One workspace." xml:space="preserve"><value>One workspace.</value></data>
+  <data name="Set up a private workspace for your finance team. You will be its first administrator." xml:space="preserve"><value>Set up a private workspace for your finance team. You will be its first administrator.</value></data>
+  <data name="Create company and administrator" xml:space="preserve"><value>Create company and administrator</value></data>
+  <data name="Complete company profile" xml:space="preserve"><value>Complete company profile</value></data>
+  <data name="Already registered?" xml:space="preserve"><value>Already registered?</value></data>
+  <data name="Use 12–128 characters with uppercase, lowercase, a number and a symbol." xml:space="preserve"><value>Use 12–128 characters with uppercase, lowercase, a number and a symbol.</value></data>
+  <data name="I am authorized to register and manage this company." xml:space="preserve"><value>I am authorized to register and manage this company.</value></data>
+  <data name="Create company account" xml:space="preserve"><value>Create company account</value></data>
+  <data name="Company name" xml:space="preserve"><value>Company name</value></data>
+  <data name="Your full name" xml:space="preserve"><value>Your full name</value></data>
+  <data name="Work email" xml:space="preserve"><value>Work email</value></data>
+  <data name="Password" xml:space="preserve"><value>Password</value></data>
+  <data name="Confirm password" xml:space="preserve"><value>Confirm password</value></data>
+  <data name="Current password" xml:space="preserve"><value>Current password</value></data>
+  <data name="New password" xml:space="preserve"><value>New password</value></data>
+  <data name="Confirm new password" xml:space="preserve"><value>Confirm new password</value></data>
+  <data name="Keep access to your workspace in your hands." xml:space="preserve"><value>Keep access to your workspace in your hands.</value></data>
+  <data name="Change password" xml:space="preserve"><value>Change password</value></data>
+  <data name="Update password" xml:space="preserve"><value>Update password</value></data>
+  <data name="A separate layer of access" xml:space="preserve"><value>A separate layer of access</value></data>
+  <data name="Make it your workspace." xml:space="preserve"><value>Make it your workspace.</value></data>
+  <data name="Company details establish the scope of your financial close." xml:space="preserve"><value>Company details establish the scope of your financial close.</value></data>
+  <data name="Company details" xml:space="preserve"><value>Company details</value></data>
+  <data name="Accounting currency" xml:space="preserve"><value>Accounting currency</value></data>
+  <data name="Saudi Riyal" xml:space="preserve"><value>Saudi Riyal</value></data>
+  <data name="Save and open workspace" xml:space="preserve"><value>Save and open workspace</value></data>
+  <data name="A clear starting point" xml:space="preserve"><value>A clear starting point</value></data>
+  <data name="Company account created" xml:space="preserve"><value>Company account created</value></data>
+  <data name="The initial reconciliation release supports SAR accounts. Connecting NetSuite and banks is a separate step." xml:space="preserve"><value>The initial reconciliation release supports SAR accounts. Connecting NetSuite and banks is a separate step.</value></data>
+  <data name="Company legal name" xml:space="preserve"><value>Company legal name</value></data>
+  <data name="Country" xml:space="preserve"><value>Country</value></data>
+  <data name="Commercial registration number (optional)" xml:space="preserve"><value>Commercial registration number (optional)</value></data>
+  <data name="Business address (optional)" xml:space="preserve"><value>Business address (optional)</value></data>
+  <data name="Staff directory" xml:space="preserve"><value>Staff directory</value></data>
+  <data name="Company members, assigned roles and account security status." xml:space="preserve"><value>Company members, assigned roles and account security status.</value></data>
+  <data name="View only" xml:space="preserve"><value>View only</value></data>
+  <data name="Company staff" xml:space="preserve"><value>Company staff</value></data>
+  <data name="{0} member" xml:space="preserve"><value>{0} member</value></data>
+  <data name="{0} members" xml:space="preserve"><value>{0} members</value></data>
+  <data name="Invitations and role changes are not yet available." xml:space="preserve"><value>Invitations and role changes are not yet available.</value></data>
+  <data name="Company staff table" xml:space="preserve"><value>Company staff table</value></data>
+  <data name="Members of your company, their roles, and email, MFA and sign-in lockout status." xml:space="preserve"><value>Members of your company, their roles, and email, MFA and sign-in lockout status.</value></data>
+  <data name="Member" xml:space="preserve"><value>Member</value></data>
+  <data name="Roles" xml:space="preserve"><value>Roles</value></data>
+  <data name="Email" xml:space="preserve"><value>Email</value></data>
+  <data name="MFA" xml:space="preserve"><value>MFA</value></data>
+  <data name="Sign-in lockout" xml:space="preserve"><value>Sign-in lockout</value></data>
+  <data name="No roles assigned" xml:space="preserve"><value>No roles assigned</value></data>
+  <data name="Confirmed" xml:space="preserve"><value>Confirmed</value></data>
+  <data name="Unconfirmed" xml:space="preserve"><value>Unconfirmed</value></data>
+  <data name="Enabled" xml:space="preserve"><value>Enabled</value></data>
+  <data name="Not enabled" xml:space="preserve"><value>Not enabled</value></data>
+  <data name="Locked" xml:space="preserve"><value>Locked</value></data>
+  <data name="Not locked" xml:space="preserve"><value>Not locked</value></data>
+  <data name="Staff pages" xml:space="preserve"><value>Staff pages</value></data>
+  <data name="Page {0} of {1}" xml:space="preserve"><value>Page {0} of {1}</value></data>
+  <data name="Previous" xml:space="preserve"><value>Previous</value></data>
+  <data name="Next" xml:space="preserve"><value>Next</value></data>
+  <data name="Administrator" xml:space="preserve"><value>Administrator</value></data>
+  <data name="Accountant" xml:space="preserve"><value>Accountant</value></data>
+  <data name="Controller" xml:space="preserve"><value>Controller</value></data>
+  <data name="Viewer" xml:space="preserve"><value>Viewer</value></data>
+  <data name="NetSuite connection" xml:space="preserve"><value>NetSuite connection</value></data>
+  <data name="Connect your accounting source." xml:space="preserve"><value>Connect your accounting source.</value></data>
+  <data name="Read-only GL access, scoped to your company." xml:space="preserve"><value>Read-only GL access, scoped to your company.</value></data>
+  <data name="Back to accounts" xml:space="preserve"><value>Back to accounts</value></data>
+  <data name="A connection is saved for {0}. Saving replaces its credentials and clears the current view; previous evidence is retained." xml:space="preserve"><value>A connection is saved for {0}. Saving replaces its credentials and clears the current view; previous evidence is retained.</value></data>
+  <data name="Integration credentials" xml:space="preserve"><value>Integration credentials</value></data>
+  <data name="These are NetSuite integration credentials, not your Dike password." xml:space="preserve"><value>These are NetSuite integration credentials, not your Dike password.</value></data>
+  <data name="Use the account ID from NetSuite, not an application URL." xml:space="preserve"><value>Use the account ID from NetSuite, not an application URL.</value></data>
+  <data name="NetSuite account ID" xml:space="preserve"><value>NetSuite account ID</value></data>
+  <data name="Authentication method" xml:space="preserve"><value>Authentication method</value></data>
+  <data name="Mode" xml:space="preserve"><value>Mode</value></data>
+  <data name="Consumer key / client ID" xml:space="preserve"><value>Consumer key / client ID</value></data>
+  <data name="Token-based authentication (HMAC-SHA256)" xml:space="preserve"><value>Token-based authentication (HMAC-SHA256)</value></data>
+  <data name="OAuth 2.0 certificate (RSA / PS256)" xml:space="preserve"><value>OAuth 2.0 certificate (RSA / PS256)</value></data>
+  <data name="Token-based authentication" xml:space="preserve"><value>Token-based authentication</value></data>
+  <data name="Consumer secret" xml:space="preserve"><value>Consumer secret</value></data>
+  <data name="Token ID" xml:space="preserve"><value>Token ID</value></data>
+  <data name="Token secret" xml:space="preserve"><value>Token secret</value></data>
+  <data name="OAuth 2.0 certificate" xml:space="preserve"><value>OAuth 2.0 certificate</value></data>
+  <data name="Certificate ID" xml:space="preserve"><value>Certificate ID</value></data>
+  <data name="RSA private key (PEM)" xml:space="preserve"><value>RSA private key (PEM)</value></data>
+  <data name="Map the certificate to this integration and a permitted role in NetSuite. A client ID and secret alone do not enable this flow." xml:space="preserve"><value>Map the certificate to this integration and a permitted role in NetSuite. A client ID and secret alone do not enable this flow.</value></data>
+  <data name="Save company connection" xml:space="preserve"><value>Save company connection</value></data>
+  <data name="Before you connect" xml:space="preserve"><value>Before you connect</value></data>
+  <data name="Enable REST Web Services and the selected authentication method." xml:space="preserve"><value>Enable REST Web Services and the selected authentication method.</value></data>
+  <data name="Give the integration role only the accounting and subsidiary access it needs." xml:space="preserve"><value>Give the integration role only the accounting and subsidiary access it needs.</value></data>
+  <data name="Save credentials, then load accessible GL accounts." xml:space="preserve"><value>Save credentials, then load accessible GL accounts.</value></data>
+  <data name="Read-only by design" xml:space="preserve"><value>Read-only by design</value></data>
+  <data name="No journals or reconciliation updates are written to NetSuite." xml:space="preserve"><value>No journals or reconciliation updates are written to NetSuite.</value></data>
+  <data name="Credentials are encrypted on this server. Use HTTPS outside local development." xml:space="preserve"><value>Credentials are encrypted on this server. Use HTTPS outside local development.</value></data>
+  <data name="Initial imports support SAR bank accounts, SAR subsidiaries and the primary accounting book. Validate fields and totals against your NetSuite GL report." xml:space="preserve"><value>Initial imports support SAR bank accounts, SAR subsidiaries and the primary accounting book. Validate fields and totals against your NetSuite GL report.</value></data>
+  <data name="Your NetSuite GL accounts." xml:space="preserve"><value>Your NetSuite GL accounts.</value></data>
+  <data name="Read-only accounting data, scoped to your company." xml:space="preserve"><value>Read-only accounting data, scoped to your company.</value></data>
+  <data name="Configure NetSuite" xml:space="preserve"><value>Configure NetSuite</value></data>
+  <data name="Update connection" xml:space="preserve"><value>Update connection</value></data>
+  <data name="Last complete account load" xml:space="preserve"><value>Last complete account load</value></data>
+  <data name="Never" xml:space="preserve"><value>Never</value></data>
+  <data name="Load / refresh GL accounts" xml:space="preserve"><value>Load / refresh GL accounts</value></data>
+  <data name="Last attempt" xml:space="preserve"><value>Last attempt</value></data>
+  <data name="Chart of accounts" xml:space="preserve"><value>Chart of accounts</value></data>
+  <data name="{0} accessible active accounts. Movement import scope: SAR bank accounts." xml:space="preserve"><value>{0} accessible active accounts. Movement import scope: SAR bank accounts.</value></data>
+  <data name="Not loaded" xml:space="preserve"><value>Not loaded</value></data>
+  <data name="Snapshot" xml:space="preserve"><value>Snapshot</value></data>
+  <data name="No accounts imported yet" xml:space="preserve"><value>No accounts imported yet</value></data>
+  <data name="Back to overview" xml:space="preserve"><value>Back to overview</value></data>
+  <data name="No accessible accounts were returned." xml:space="preserve"><value>No accessible accounts were returned.</value></data>
+  <data name="Accessible NetSuite accounts and their import eligibility." xml:space="preserve"><value>Accessible NetSuite accounts and their import eligibility.</value></data>
+  <data name="Account" xml:space="preserve"><value>Account</value></data>
+  <data name="Subsidiary" xml:space="preserve"><value>Subsidiary</value></data>
+  <data name="Currency" xml:space="preserve"><value>Currency</value></data>
+  <data name="Pilot eligibility" xml:space="preserve"><value>Pilot eligibility</value></data>
+  <data name="Eligible — mapping pending" xml:space="preserve"><value>Eligible — mapping pending</value></data>
+  <data name="Not eligible" xml:space="preserve"><value>Not eligible</value></data>
+  <data name="Collect posted GL movements" xml:space="preserve"><value>Collect posted GL movements</value></data>
+  <data name="Bank GL account" xml:space="preserve"><value>Bank GL account</value></data>
+  <data name="Select an account" xml:space="preserve"><value>Select an account</value></data>
+  <data name="Subsidiary internal ID (SAR base currency)" xml:space="preserve"><value>Subsidiary internal ID (SAR base currency)</value></data>
+  <data name="Primary accounting book internal ID" xml:space="preserve"><value>Primary accounting book internal ID</value></data>
+  <data name="From" xml:space="preserve"><value>From</value></data>
+  <data name="To" xml:space="preserve"><value>To</value></data>
+  <data name="Collect GL movements" xml:space="preserve"><value>Collect GL movements</value></data>
+  <data name="All pages must complete before publication. This does not post accounting entries or approve reconciliation." xml:space="preserve"><value>All pages must complete before publication. This does not post accounting entries or approve reconciliation.</value></data>
+  <data name="Latest completed GL extract" xml:space="preserve"><value>Latest completed GL extract</value></data>
+  <data name="Book" xml:space="preserve"><value>Book</value></data>
+  <data name="Fetched" xml:space="preserve"><value>Fetched</value></data>
+  <data name="Run" xml:space="preserve"><value>Run</value></data>
+  <data name="GL report validation required" xml:space="preserve"><value>GL report validation required</value></data>
+  <data name="Rows" xml:space="preserve"><value>Rows</value></data>
+  <data name="Debit − credit / SAR" xml:space="preserve"><value>Debit − credit / SAR</value></data>
+  <data name="Debit / Credit" xml:space="preserve"><value>Debit / Credit</value></data>
+  <data name="Posted movements in the latest saved extract." xml:space="preserve"><value>Posted movements in the latest saved extract.</value></data>
+  <data name="Date" xml:space="preserve"><value>Date</value></data>
+  <data name="Transaction / line" xml:space="preserve"><value>Transaction / line</value></data>
+  <data name="Reference" xml:space="preserve"><value>Reference</value></data>
+  <data name="Debit" xml:space="preserve"><value>Debit</value></data>
+  <data name="Credit" xml:space="preserve"><value>Credit</value></data>
+  <data name="Signed SAR" xml:space="preserve"><value>Signed SAR</value></data>
+  <data name="Showing the first 500 rows. Totals include every row in the saved extract. Source as-of time is not supplied by this API." xml:space="preserve"><value>Showing the first 500 rows. Totals include every row in the saved extract. Source as-of time is not supplied by this API.</value></data>
+  <data name="Access denied" xml:space="preserve"><value>Access denied</value></data>
+  <data name="Your company account does not have the role required for this page. Ask your administrator to review your Dike access." xml:space="preserve"><value>Your company account does not have the role required for this page. Ask your administrator to review your Dike access.</value></data>
+  <data name="Return to overview" xml:space="preserve"><value>Return to overview</value></data>
+  <data name="Something went wrong" xml:space="preserve"><value>Something went wrong</value></data>
+  <data name="We could not complete that request." xml:space="preserve"><value>We could not complete that request.</value></data>
+  <data name="Please try again. If the problem continues, contact your administrator." xml:space="preserve"><value>Please try again. If the problem continues, contact your administrator.</value></data>
+  <data name="The {0} field is required." xml:space="preserve"><value>The {0} field is required.</value></data>
+  <data name="Enter a valid email address." xml:space="preserve"><value>Enter a valid email address.</value></data>
+  <data name="{0} must be {1} characters or fewer." xml:space="preserve"><value>{0} must be {1} characters or fewer.</value></data>
+  <data name="Use between {2} and {1} characters for {0}." xml:space="preserve"><value>Use between {2} and {1} characters for {0}.</value></data>
+  <data name="{0} and {1} do not match." xml:space="preserve"><value>{0} and {1} do not match.</value></data>
+  <data name="{0} must contain digits only." xml:space="preserve"><value>{0} must contain digits only.</value></data>
+  <data name="Confirm that you are authorized to register this company." xml:space="preserve"><value>Confirm that you are authorized to register this company.</value></data>
+  <data name="Unable to sign in. Check your credentials, or wait 15 minutes if you have tried repeatedly." xml:space="preserve"><value>Unable to sign in. Check your credentials, or wait 15 minutes if you have tried repeatedly.</value></data>
+  <data name="Registration could not be completed. If you already have an account, sign in." xml:space="preserve"><value>Registration could not be completed. If you already have an account, sign in.</value></data>
+  <data name="Registration could not be completed. Please try again." xml:space="preserve"><value>Registration could not be completed. Please try again.</value></data>
+  <data name="Your password has been updated." xml:space="preserve"><value>Your password has been updated.</value></data>
+  <data name="Company profile saved. Your workspace is ready." xml:space="preserve"><value>Company profile saved. Your workspace is ready.</value></data>
+  <data name="Connection saved. Load GL accounts to test NetSuite access." xml:space="preserve"><value>Connection saved. Load GL accounts to test NetSuite access.</value></data>
+  <data name="Configure your company NetSuite connection to begin." xml:space="preserve"><value>Configure your company NetSuite connection to begin.</value></data>
+  <data name="Connection saved. Load GL accounts to verify access." xml:space="preserve"><value>Connection saved. Load GL accounts to verify access.</value></data>
+  <data name="Complete GL account list loaded." xml:space="preserve"><value>Complete GL account list loaded.</value></data>
+  <data name="Complete GL extract saved. Validate the signed total against the NetSuite report." xml:space="preserve"><value>Complete GL extract saved. Validate the signed total against the NetSuite report.</value></data>
+  <data name="The request could not be completed. Please try again." xml:space="preserve"><value>The request could not be completed. Please try again.</value></data>
+  <data name="The account changed. Reload the page and try again." xml:space="preserve"><value>The account changed. Reload the page and try again.</value></data>
+  <data name="The current password is incorrect." xml:space="preserve"><value>The current password is incorrect.</value></data>
+  <data name="Passwords must be at least {0} characters." xml:space="preserve"><value>Passwords must be at least {0} characters.</value></data>
+  <data name="Passwords must contain a symbol." xml:space="preserve"><value>Passwords must contain a symbol.</value></data>
+  <data name="Passwords must contain a number." xml:space="preserve"><value>Passwords must contain a number.</value></data>
+  <data name="Passwords must contain a lowercase letter." xml:space="preserve"><value>Passwords must contain a lowercase letter.</value></data>
+  <data name="Passwords must contain an uppercase letter." xml:space="preserve"><value>Passwords must contain an uppercase letter.</value></data>
+  <data name="Passwords must contain at least {0} different characters." xml:space="preserve"><value>Passwords must contain at least {0} different characters.</value></data>
+  <data name="Use a valid work email address." xml:space="preserve"><value>Use a valid work email address.</value></data>
+  <data name="Configure a NetSuite connection first." xml:space="preserve"><value>Configure a NetSuite connection first.</value></data>
+  <data name="Load accounts and select an eligible SAR bank GL account." xml:space="preserve"><value>Load accounts and select an eligible SAR bank GL account.</value></data>
+  <data name="Enter a NetSuite account ID, not a URL (for example 1234567_SB1)." xml:space="preserve"><value>Enter a NetSuite account ID, not a URL (for example 1234567_SB1).</value></data>
+  <data name="An integration client/consumer ID is required." xml:space="preserve"><value>An integration client/consumer ID is required.</value></data>
+  <data name="Token-based authentication requires consumer secret, token ID and token secret." xml:space="preserve"><value>Token-based authentication requires consumer secret, token ID and token secret.</value></data>
+  <data name="A mapped certificate ID is required." xml:space="preserve"><value>A mapped certificate ID is required.</value></data>
+  <data name="Provide an RSA private key in unencrypted PEM format for PS256 signing." xml:space="preserve"><value>Provide an RSA private key in unencrypted PEM format for PS256 signing.</value></data>
+  <data name="Select TBA or OAuth 2.0 certificate authentication." xml:space="preserve"><value>Select TBA or OAuth 2.0 certificate authentication.</value></data>
+  <data name="Account results contain missing or duplicate IDs; no snapshot was saved." xml:space="preserve"><value>Account results contain missing or duplicate IDs; no snapshot was saved.</value></data>
+  <data name="Account, subsidiary and book must be positive internal IDs." xml:space="preserve"><value>Account, subsidiary and book must be positive internal IDs.</value></data>
+  <data name="Select a valid period of at most 366 days." xml:space="preserve"><value>Select a valid period of at most 366 days.</value></data>
+  <data name="Select an active SAR bank account, a SAR subsidiary, and the primary accounting book. Currency conversion is not enabled." xml:space="preserve"><value>Select an active SAR bank account, a SAR subsidiary, and the primary accounting book. Currency conversion is not enabled.</value></data>
+  <data name="A signed source movement exceeds the SAR money range; no snapshot was saved." xml:space="preserve"><value>A signed source movement exceeds the SAR money range; no snapshot was saved.</value></data>
+  <data name="GL source identities are missing or repeated. Validate the line key in Records Catalog; no snapshot was saved." xml:space="preserve"><value>GL source identities are missing or repeated. Validate the line key in Records Catalog; no snapshot was saved.</value></data>
+  <data name="NetSuite returned a row outside the requested scope; no snapshot was saved." xml:space="preserve"><value>NetSuite returned a row outside the requested scope; no snapshot was saved.</value></data>
+  <data name="The requested company or currency is outside this connection scope." xml:space="preserve"><value>The requested company or currency is outside this connection scope.</value></data>
+  <data name="This extract reaches the REST result limit. Select a smaller period; no partial snapshot was saved." xml:space="preserve"><value>This extract reaches the REST result limit. Select a smaller period; no partial snapshot was saved.</value></data>
+  <data name="Pagination changed or was incomplete. Retry the extract; no snapshot was saved." xml:space="preserve"><value>Pagination changed or was incomplete. Retry the extract; no snapshot was saved.</value></data>
+  <data name="Incomplete result count; no snapshot was saved." xml:space="preserve"><value>Incomplete result count; no snapshot was saved.</value></data>
+  <data name="REST row limit exceeded. Select a smaller period." xml:space="preserve"><value>REST row limit exceeded. Select a smaller period.</value></data>
+  <data name="NetSuite requested a longer retry delay. Try again later; previous data is unchanged." xml:space="preserve"><value>NetSuite requested a longer retry delay. Try again later; previous data is unchanged.</value></data>
+  <data name="NetSuite certificate authentication failed. Check the integration, certificate mapping and role." xml:space="preserve"><value>NetSuite certificate authentication failed. Check the integration, certificate mapping and role.</value></data>
+  <data name="NetSuite returned no access token." xml:space="preserve"><value>NetSuite returned no access token.</value></data>
+  <data name="A source amount is missing, invalid or exceeds SAR precision or money range; no snapshot was saved." xml:space="preserve"><value>A source amount is missing, invalid or exceeds SAR precision or money range; no snapshot was saved.</value></data>
+  <data name="Enter a valid value for {0}." xml:space="preserve"><value>Enter a valid value for {0}.</value></data>
+  <data name="Enter a valid value." xml:space="preserve"><value>Enter a valid value.</value></data>
+  <data name="Enter a number for {0}." xml:space="preserve"><value>Enter a number for {0}.</value></data>
+  <data name="Complete the required fields." xml:space="preserve"><value>Complete the required fields.</value></data>
+  <data name="NetSuite denied access. Check integration credentials, token/certificate validity and role permissions." xml:space="preserve"><value>NetSuite denied access. Check integration credentials, token/certificate validity and role permissions.</value></data>
+  <data name="NetSuite request failed, timed out or returned an unexpected response. Previous completed data is retained." xml:space="preserve"><value>NetSuite request failed, timed out or returned an unexpected response. Previous completed data is retained.</value></data>
+  <data name="NetSuite query failed (HTTP {0}). Check Records Catalog fields and permissions. Previous data is unchanged." xml:space="preserve"><value>NetSuite query failed (HTTP {0}). Check Records Catalog fields and permissions. Previous data is unchanged.</value></data>
+  <data name="{0} accounts loaded" xml:space="preserve"><value>{0} accounts loaded</value></data>
+  <data name="{0} selected accounts" xml:space="preserve"><value>{0} selected accounts</value></data>
+  <data name="A verified Odoo connection is saved for this workspace." xml:space="preserve"><value>A verified Odoo connection is saved for this workspace.</value></data>
+  <data name="Access follows your Odoo integration user's permissions." xml:space="preserve"><value>Access follows your Odoo integration user's permissions.</value></data>
+  <data name="Access stays with your company." xml:space="preserve"><value>Access stays with your company.</value></data>
+  <data name="Account ID" xml:space="preserve"><value>Account ID</value></data>
+  <data name="Accounts to preview" xml:space="preserve"><value>Accounts to preview</value></data>
+  <data name="API key" xml:space="preserve"><value>API key</value></data>
+  <data name="Bank accounts permitted to the connected Odoo user." xml:space="preserve"><value>Bank accounts permitted to the connected Odoo user.</value></data>
+  <data name="Calendar month" xml:space="preserve"><value>Calendar month</value></data>
+  <data name="Choose a company" xml:space="preserve"><value>Choose a company</value></data>
+  <data name="Choose a permitted company and load its bank accounts before fetching entries." xml:space="preserve"><value>Choose a permitted company and load its bank accounts before fetching entries.</value></data>
+  <data name="Choose a permitted company, then load its bank accounts." xml:space="preserve"><value>Choose a permitted company, then load its bank accounts.</value></data>
+  <data name="Choose accounts and dates, then review the returned entries." xml:space="preserve"><value>Choose accounts and dates, then review the returned entries.</value></data>
+  <data name="Choose accounts and period" xml:space="preserve"><value>Choose accounts and period</value></data>
+  <data name="Choose your Odoo company." xml:space="preserve"><value>Choose your Odoo company.</value></data>
+  <data name="Code" xml:space="preserve"><value>Code</value></data>
+  <data name="Companies and accounts" xml:space="preserve"><value>Companies and accounts</value></data>
+  <data name="Connect Odoo" xml:space="preserve"><value>Connect Odoo</value></data>
+  <data name="Connect Odoo first" xml:space="preserve"><value>Connect Odoo first</value></data>
+  <data name="Connect Odoo to your workspace." xml:space="preserve"><value>Connect Odoo to your workspace.</value></data>
+  <data name="Connect, choose your accounts, and preview a posted period." xml:space="preserve"><value>Connect, choose your accounts, and preview a posted period.</value></data>
+  <data name="Connection credentials and saved previews are encrypted and scoped to this Dike workspace." xml:space="preserve"><value>Connection credentials and saved previews are encrypted and scoped to this Dike workspace.</value></data>
+  <data name="Connection for" xml:space="preserve"><value>Connection for</value></data>
+  <data name="Connection settings" xml:space="preserve"><value>Connection settings</value></data>
+  <data name="Credentials stay private" xml:space="preserve"><value>Credentials stay private</value></data>
+  <data name="Custom dates" xml:space="preserve"><value>Custom dates</value></data>
+  <data name="Database name" xml:space="preserve"><value>Database name</value></data>
+  <data name="Dates are inclusive. Only posted entries for your selected accounts are requested." xml:space="preserve"><value>Dates are inclusive. Only posted entries for your selected accounts are requested.</value></data>
+  <data name="Enter an API key with at most 512 characters." xml:space="preserve"><value>Enter an API key with at most 512 characters.</value></data>
+  <data name="Entry / item" xml:space="preserve"><value>Entry / item</value></data>
+  <data name="Fetch posted GL" xml:space="preserve"><value>Fetch posted GL</value></data>
+  <data name="Foreign-currency restriction" xml:space="preserve"><value>Foreign-currency restriction</value></data>
+  <data name="GL preview" xml:space="preserve"><value>GL preview</value></data>
+  <data name="Includes the selected start date and the next six days." xml:space="preserve"><value>Includes the selected start date and the next six days.</value></data>
+  <data name="Journal" xml:space="preserve"><value>Journal</value></data>
+  <data name="Latest saved preview" xml:space="preserve"><value>Latest saved preview</value></data>
+  <data name="Leave empty unless your Odoo administrator supplied a database name." xml:space="preserve"><value>Leave empty unless your Odoo administrator supplied a database name.</value></data>
+  <data name="Limited sample" xml:space="preserve"><value>Limited sample</value></data>
+  <data name="Load accounts first" xml:space="preserve"><value>Load accounts first</value></data>
+  <data name="Load bank accounts" xml:space="preserve"><value>Load bank accounts</value></data>
+  <data name="Load more accounts" xml:space="preserve"><value>Load more accounts</value></data>
+  <data name="Load more companies" xml:space="preserve"><value>Load more companies</value></data>
+  <data name="Load permitted bank accounts before selecting a GL period." xml:space="preserve"><value>Load permitted bank accounts before selecting a GL period.</value></data>
+  <data name="Load the companies and bank accounts permitted to your Odoo user." xml:space="preserve"><value>Load the companies and bank accounts permitted to your Odoo user.</value></data>
+  <data name="Loaded bank accounts" xml:space="preserve"><value>Loaded bank accounts</value></data>
+  <data name="Monthly" xml:space="preserve"><value>Monthly</value></data>
+  <data name="No permitted bank accounts were returned for this company." xml:space="preserve"><value>No permitted bank accounts were returned for this company.</value></data>
+  <data name="No posted entries were returned for this selection." xml:space="preserve"><value>No posted entries were returned for this selection.</value></data>
+  <data name="Odoo company" xml:space="preserve"><value>Odoo company</value></data>
+  <data name="Odoo connection" xml:space="preserve"><value>Odoo connection</value></data>
+  <data name="Odoo is temporarily unavailable. Please try again." xml:space="preserve"><value>Odoo is temporarily unavailable. Please try again.</value></data>
+  <data name="Odoo navigation" xml:space="preserve"><value>Odoo navigation</value></data>
+  <data name="Odoo overview" xml:space="preserve"><value>Odoo overview</value></data>
+  <data name="Odoo GL preview" xml:space="preserve"><value>Odoo GL preview</value></data>
+  <data name="Odoo companies and accounts" xml:space="preserve"><value>Odoo companies and accounts</value></data>
+  <data name="Optional" xml:space="preserve"><value>Optional</value></data>
+  <data name="Or enter a new API key below." xml:space="preserve"><value>Or enter a new API key below.</value></data>
+  <data name="Period" xml:space="preserve"><value>Period</value></data>
+  <data name="Posted entries returned for this account and period." xml:space="preserve"><value>Posted entries returned for this account and period.</value></data>
+  <data name="Posted GL preview" xml:space="preserve"><value>Posted GL preview</value></data>
+  <data name="Preview a posted GL period." xml:space="preserve"><value>Preview a posted GL period.</value></data>
+  <data name="Preview eligibility" xml:space="preserve"><value>Preview eligibility</value></data>
+  <data name="Preview posted entries for your selected accounts and period." xml:space="preserve"><value>Preview posted entries for your selected accounts and period.</value></data>
+  <data name="Preview posted GL" xml:space="preserve"><value>Preview posted GL</value></data>
+  <data name="Preview status" xml:space="preserve"><value>Preview status</value></data>
+  <data name="Preview totals cover only the rows shown. Validate complete account activity against an independent GL report." xml:space="preserve"><value>Preview totals cover only the rows shown. Validate complete account activity against an independent GL report.</value></data>
+  <data name="Read-only access" xml:space="preserve"><value>Read-only access</value></data>
+  <data name="Riyadh time" xml:space="preserve"><value>Riyadh time</value></data>
+  <data name="Rows per account" xml:space="preserve"><value>Rows per account</value></data>
+  <data name="Sample credit / SAR" xml:space="preserve"><value>Sample credit / SAR</value></data>
+  <data name="Sample debit / SAR" xml:space="preserve"><value>Sample debit / SAR</value></data>
+  <data name="Select a company" xml:space="preserve"><value>Select a company</value></data>
+  <data name="Select a company above to load its accounts." xml:space="preserve"><value>Select a company above to load its accounts.</value></data>
+  <data name="Select accounts and a weekly, monthly, or custom period." xml:space="preserve"><value>Select accounts and a weekly, monthly, or custom period.</value></data>
+  <data name="Select up to five accounts. Each preview covers at most 31 days and 50 rows per account." xml:space="preserve"><value>Select up to five accounts. Each preview covers at most 31 days and 50 rows per account.</value></data>
+  <data name="The row limit was reached. Narrow the period or increase the limit to inspect more entries." xml:space="preserve"><value>The row limit was reached. Narrow the period or increase the limit to inspect more entries.</value></data>
+  <data name="The saved key is never displayed. Enter a new key to replace it." xml:space="preserve"><value>The saved key is never displayed. Enter a new key to replace it.</value></data>
+  <data name="These pages only read Odoo data." xml:space="preserve"><value>These pages only read Odoo data.</value></data>
+  <data name="Use an Odoo user with access to the companies and accounts you need." xml:space="preserve"><value>Use an Odoo user with access to the companies and accounts you need.</value></data>
+  <data name="Use existing local connection" xml:space="preserve"><value>Use existing local connection</value></data>
+  <data name="Verify access and keep credentials private to your Dike workspace." xml:space="preserve"><value>Verify access and keep credentials private to your Dike workspace.</value></data>
+  <data name="Verify access before loading company accounts." xml:space="preserve"><value>Verify access before loading company accounts.</value></data>
+  <data name="Verify and save connection" xml:space="preserve"><value>Verify and save connection</value></data>
+  <data name="Verify your connection to load permitted companies." xml:space="preserve"><value>Verify your connection to load permitted companies.</value></data>
+  <data name="View preview" xml:space="preserve"><value>View preview</value></data>
+  <data name="Week starting" xml:space="preserve"><value>Week starting</value></data>
+  <data name="Weekly" xml:space="preserve"><value>Weekly</value></data>
+  <data name="Your existing local Odoo key is assigned to this workspace." xml:space="preserve"><value>Your existing local Odoo key is assigned to this workspace.</value></data>
+  <data name="Your Odoo accounting workspace." xml:space="preserve"><value>Your Odoo accounting workspace.</value></data>
+  <data name="Choose a company, load accounts, and preview a posted GL period." xml:space="preserve"><value>Choose a company, load accounts, and preview a posted GL period.</value></data>
+  <data name="Open Odoo workspace" xml:space="preserve"><value>Open Odoo workspace</value></data>
+  <data name="Company accounts and posted GL previews" xml:space="preserve"><value>Company accounts and posted GL previews</value></data>
+  <data name="Preview returned" xml:space="preserve"><value>Preview returned</value></data>
+  <data name="Odoo connection verified and saved." xml:space="preserve"><value>Odoo connection verified and saved.</value></data>
+  <data name="Odoo accounts loaded. Choose accounts and a period for your preview." xml:space="preserve"><value>Odoo accounts loaded. Choose accounts and a period for your preview.</value></data>
+  <data name="More Odoo companies loaded." xml:space="preserve"><value>More Odoo companies loaded.</value></data>
+  <data name="More Odoo accounts loaded." xml:space="preserve"><value>More Odoo accounts loaded.</value></data>
+  <data name="Posted GL preview loaded." xml:space="preserve"><value>Posted GL preview loaded.</value></data>
+  <data name="Check the API key and database settings." xml:space="preserve"><value>Check the API key and database settings.</value></data>
+  <data name="Ask your administrator to configure a valid HTTPS Odoo server address." xml:space="preserve"><value>Ask your administrator to configure a valid HTTPS Odoo server address.</value></data>
+  <data name="Verify the connection again for the configured Odoo server." xml:space="preserve"><value>Verify the connection again for the configured Odoo server.</value></data>
+  <data name="Odoo rejected the API key. Check its expiry and permissions." xml:space="preserve"><value>Odoo rejected the API key. Check its expiry and permissions.</value></data>
+  <data name="Odoo denied access. Check the integration user's permissions." xml:space="preserve"><value>Odoo denied access. Check the integration user's permissions.</value></data>
+  <data name="The local connection is not assigned to this Dike workspace." xml:space="preserve"><value>The local connection is not assigned to this Dike workspace.</value></data>
+  <data name="Connect Odoo before loading accounting data." xml:space="preserve"><value>Connect Odoo before loading accounting data.</value></data>
+  <data name="Select one to five loaded accounts and a valid period of up to 31 days." xml:space="preserve"><value>Select one to five loaded accounts and a valid period of up to 31 days.</value></data>
+  <data name="The account list changed. Select accounts again." xml:space="preserve"><value>The account list changed. Select accounts again.</value></data>
+  <data name="Enter a valid week, calendar month, or date range of up to 31 days." xml:space="preserve"><value>Enter a valid week, calendar month, or date range of up to 31 days.</value></data>
+  <data name="The company or accounts are no longer accessible or eligible for this SAR preview." xml:space="preserve"><value>The company or accounts are no longer accessible or eligible for this SAR preview.</value></data>
+  <data name="Odoo returned data that could not be validated. The previous preview is retained." xml:space="preserve"><value>Odoo returned data that could not be validated. The previous preview is retained.</value></data>
+  <data name="The saved Odoo connection could not be read or updated. Please try again." xml:space="preserve"><value>The saved Odoo connection could not be read or updated. Please try again.</value></data>
+  <data name="The Odoo request did not complete. The previous preview is retained." xml:space="preserve"><value>The Odoo request did not complete. The previous preview is retained.</value></data>
+  <data name="Independent review. This preview does not change Odoo accounting records." xml:space="preserve"><value>Independent review. This preview does not change Odoo accounting records.</value></data>
+  <data name="Connection provider" xml:space="preserve"><value>Connection provider</value></data>
+  <data name="Choose a provider" xml:space="preserve"><value>Choose a provider</value></data>
+  <data name="Choose NetSuite or Odoo." xml:space="preserve"><value>Choose NetSuite or Odoo.</value></data>
+  <data name="Your workspace will show only the selected provider. You can change it in Company profile." xml:space="preserve"><value>Your workspace will show only the selected provider. You can change it in Company profile.</value></data>
+  <data name="Only this provider appears in your workspace. Changing it keeps any previously saved connection settings." xml:space="preserve"><value>Only this provider appears in your workspace. Changing it keeps any previously saved connection settings.</value></data>
+  <data name="Your Dike password is separate from your connection credentials." xml:space="preserve"><value>Your Dike password is separate from your connection credentials.</value></data>
+  <data name="The initial reconciliation release supports SAR accounts. Configure your selected provider after saving your profile." xml:space="preserve"><value>The initial reconciliation release supports SAR accounts. Configure your selected provider after saving your profile.</value></data>
+  <data name="Clarity for bank and accounting reconciliation, with independent review and evidence at its heart." xml:space="preserve"><value>Clarity for bank and accounting reconciliation, with independent review and evidence at its heart.</value></data>
+  <data name="Connect Odoo to load company accounts." xml:space="preserve"><value>Connect Odoo to load company accounts.</value></data>
+  <data name="{0} rows in latest GL preview" xml:space="preserve"><value>{0} rows in latest GL preview</value></data>
+  <data name="Review your Odoo connection settings." xml:space="preserve"><value>Review your Odoo connection settings.</value></data>
+  <data name="Connect Odoo, preview a posted period, and validate it against your GL report." xml:space="preserve"><value>Connect Odoo, preview a posted period, and validate it against your GL report.</value></data>
+  <data name="Accounts" xml:space="preserve"><value>Accounts</value></data>
+  <data name="Team &amp; access" xml:space="preserve"><value>Team &amp; access</value></data>
+  <data name="Workspace overview" xml:space="preserve"><value>Workspace overview</value></data>
+  <data name="Your accounts, source coverage and next steps." xml:space="preserve"><value>Your accounts, source coverage and next steps.</value></data>
+  <data name="Workspace scope" xml:space="preserve"><value>Workspace scope</value></data>
+  <data name="Account source coverage" xml:space="preserve"><value>Account source coverage</value></data>
+  <data name="Loaded accounts and the evidence currently available." xml:space="preserve"><value>Loaded accounts and the evidence currently available.</value></data>
+  <data name="Bank coverage" xml:space="preserve"><value>Bank coverage</value></data>
+  <data name="Ledger coverage" xml:space="preserve"><value>Ledger coverage</value></data>
+  <data name="Period difference" xml:space="preserve"><value>Period difference</value></data>
+  <data name="Next action" xml:space="preserve"><value>Next action</value></data>
+  <data name="Not imported" xml:space="preserve"><value>Not imported</value></data>
+  <data name="Not previewed" xml:space="preserve"><value>Not previewed</value></data>
+  <data name="Not available" xml:space="preserve"><value>Not available</value></data>
+  <data name="Preview totals are samples. Complete bank and ledger evidence is required to calculate a period difference." xml:space="preserve"><value>Preview totals are samples. Complete bank and ledger evidence is required to calculate a period difference.</value></data>
+  <data name="Load your permitted accounts" xml:space="preserve"><value>Load your permitted accounts</value></data>
+  <data name="Review your accounting source" xml:space="preserve"><value>Review your accounting source</value></data>
+  <data name="View accounts" xml:space="preserve"><value>View accounts</value></data>
+  <data name="Source readiness" xml:space="preserve"><value>Source readiness</value></data>
+  <data name="Connection status" xml:space="preserve"><value>Connection status</value></data>
+  <data name="Accounts fetched" xml:space="preserve"><value>Accounts fetched</value></data>
+  <data name="Validate complete account activity against an independent GL report." xml:space="preserve"><value>Validate complete account activity against an independent GL report.</value></data>
+  <data name="Sample movement / SAR" xml:space="preserve"><value>Sample movement / SAR</value></data>
+  <data name="Limited sample returned 0 rows for this account and period." xml:space="preserve"><value>Limited sample returned 0 rows for this account and period.</value></data>
+  <data name="Bring bank and accounting evidence into a clearer close. Start with your company, connect Odoo or NetSuite, and inspect posted GL activity." xml:space="preserve"><value>Bring bank and accounting evidence into a clearer close. Start with your company, connect Odoo or NetSuite, and inspect posted GL activity.</value></data>
+  <data name="Inspect posted accounting movements for your permitted company, accounts and period." xml:space="preserve"><value>Inspect posted accounting movements for your permitted company, accounts and period.</value></data>
+  <data name="Available now: company setup, staff directory, NetSuite GL collection and Odoo GL preview." xml:space="preserve"><value>Available now: company setup, staff directory, NetSuite GL collection and Odoo GL preview.</value></data>
+</root>

@@ -1,0 +1,19 @@
+{
+  "CompanyId": "synthetic-company",
+  "ConnectionId": "synthetic-connection",
+  "Complete": true,
+  "Data": {
+    "RunId": "synthetic-reference-only",
+    "FetchedAt": "2026-11-02T00:00:00+00:00",
+    "AccountId": "100",
+    "SubsidiaryId": "1",
+    "AccountingBookId": "1",
+    "Currency": "SAR",
+    "From": "2026-11-01",
+    "To": "2026-11-03",
+    "Lines": [
+      { "TransactionId": "11", "LineId": "1", "BookId": "1", "AccountId": "100", "SubsidiaryId": "1", "Date": "2026-11-02", "Reference": "SYNTHETIC-PAYMENT", "Debit": 0.00, "Credit": 25.50 },
+      { "TransactionId": "10", "LineId": "1", "BookId": "1", "AccountId": "100", "SubsidiaryId": "1", "Date": "2026-11-01", "Reference": "SYNTHETIC-RECEIPT", "Debit": 125.50, "Credit": 0.00 }
+    ]
+  }
+}
