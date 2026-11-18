@@ -6,7 +6,7 @@ The [design draft](../../design_draft.md), section 8.2, targets the customer's s
 
 ## Sources and evidence level
 
-All links below were inspected on 16 November 2026. The supplied ReadMe portal displays v1.0; several pages describe their last update as about a year ago. These are documentation observations, not a verified deployed API version.
+All links below were inspected on 16 November 2026. The supplied ReadMe portal displays v1.0; several pages describe their last update as about a year ago. These are documentation observations, not a verified deployed API version. 
 
 | Source | What was inspected | Evidence limit |
 | --- | --- | --- |
